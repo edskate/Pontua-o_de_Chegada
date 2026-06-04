@@ -1,0 +1,1877 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agenda Junho 2026 - Celular</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#eef2f7;
+  color:#111;
+}
+header{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:#0066ff;
+  color:#fff;
+  padding:12px;
+  text-align:center;
+  box-shadow:0 2px 8px #999;
+}
+h1{font-size:18px;margin:0 0 6px 0}
+#relogio{font-size:15px;font-weight:bold}
+.resumo{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:6px;
+  padding:8px;
+  background:#dbe8ff;
+}
+.resumo div{
+  background:white;
+  border-radius:10px;
+  padding:8px;
+  text-align:center;
+  font-weight:bold;
+  font-size:13px;
+}
+main{padding:10px}
+.cardEvento{
+  background:white;
+  border-radius:14px;
+  margin-bottom:14px;
+  padding:12px;
+  box-shadow:0 2px 8px #c5c5c5;
+  border-left:8px solid #ccc;
+}
+.topoCard{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:center;
+  border-bottom:1px solid #ddd;
+  padding-bottom:8px;
+}
+.data{font-size:22px;font-weight:bold}
+.dia{font-size:14px;color:#555;font-weight:bold}
+.status{
+  padding:8px;
+  border-radius:8px;
+  font-weight:bold;
+  font-size:13px;
+  text-align:center;
+}
+.campo{
+  margin-top:10px;
+  background:#f7f9fc;
+  border-radius:10px;
+  padding:9px;
+}
+.campo p{margin:5px 0 0 0}
+.atracao{font-size:16px;font-weight:bold}
+.checks{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
+  margin-top:8px;
+}
+.checks label{
+  background:#eaf1ff;
+  border:1px solid #9dbdff;
+  border-radius:8px;
+  padding:9px;
+  font-weight:bold;
+  font-size:14px;
+}
+input[type="checkbox"]{transform:scale(1.25);margin-right:6px}
+textarea{
+  width:100%;
+  margin-top:10px;
+  min-height:70px;
+  border:1px solid #aaa;
+  border-radius:10px;
+  padding:10px;
+  font-size:15px;
+}
+button{
+  width:100%;
+  border:none;
+  border-radius:10px;
+  padding:12px;
+  font-weight:bold;
+  font-size:15px;
+  background:#0066ff;
+  color:white;
+  margin-top:8px;
+}
+button:active{transform:scale(.98)}
+.salvarBtn{background:#008000}
+.horaRealTxt{
+  margin-top:8px;
+  background:#fff;
+  border:1px solid #bcd0ff;
+  color:#0066ff;
+  padding:8px;
+  border-radius:8px;
+  font-weight:bold;
+  font-size:13px;
+}
+.resultadoAtraso{
+  margin-top:8px;
+  padding:9px;
+  border-radius:8px;
+  font-weight:bold;
+  text-align:center;
+}
+.semRegistro{background:#eee;color:#333}
+.noHorario{background:#00cc66;color:#000}
+.atrasado{background:#ff3333;color:#fff}
+.realizado{border-left-color:#0066ff;background:#eaf1ff}
+.realizado .status{background:#0066ff;color:white}
+.hoje{border-left-color:#00cc66;background:#ecfff1;animation:piscar 1s infinite}
+.hoje .status{background:#00ff00;color:#000}
+.amanha{border-left-color:#ffcc00;background:#fffbd8}
+.amanha .status{background:#ffff00;color:#000}
+.agendado .status{background:#fff;border:1px solid #aaa;color:#000}
+@keyframes piscar{0%{opacity:1}50%{opacity:.75}100%{opacity:1}}
+.botoesFixos{
+  position:sticky;
+  bottom:0;
+  background:#fff;
+  padding:8px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  box-shadow:0 -2px 8px #bbb;
+}
+.botoesFixos button{margin:0;font-size:13px;padding:11px}
+h2{
+  background:#0066ff;
+  color:#fff;
+  padding:10px;
+  border-radius:10px;
+  text-align:center;
+  font-size:17px;
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  background:white;
+  font-size:13px;
+  margin-bottom:15px;
+}
+th,td{border:1px solid #999;padding:6px;text-align:center}
+th{background:#0066ff;color:white}
+@media(min-width:800px){
+  main{max-width:760px;margin:auto}
+  .checks{grid-template-columns:1fr 1fr 1fr}
+}
+@media print{
+  header,.botoesFixos,button{display:none}
+  body{background:white}
+  .cardEvento{box-shadow:none;border:1px solid #999;page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>AGENDA JUNHO 2026 - CELULAR</h1>
+  <div id="relogio"></div>
+</header>
+
+<div class="resumo">
+  <div>🔵 Realizados<br><span id="totalRealizados">0</span></div>
+  <div>⚪ Agendados<br><span id="totalAgendados">0</span></div>
+  <div>📅 Total<br><span id="totalAgenda">0</span></div>
+</div>
+
+<main>
+
+<section class="cardEvento" data-date="2026-06-01">
+  <div class="topoCard">
+    <div>
+      <div class="data">01/06/2026</div>
+      <div class="dia">SEGUNDA</div>
+    </div>
+    <div class="status"></div>
+  </div>
+
+  <div class="campo">
+    <strong>🎤 Atração:</strong>
+    <p class="atracao">FREDDIE-VERSO - Tributo Freddie Mercury com Krony e Banda</p>
+  </div>
+
+  <div class="campo">
+    <strong>🕺 Pocket Show:</strong>
+    <p class="pocket">Michael Jackson | Tributo</p>
+  </div>
+
+  <div class="campo">
+    <strong>📝 Observação do evento:</strong>
+    <p class="obsEvento">Sem observação</p>
+  </div>
+
+  <div class="campo presenca">
+    <strong>✅ Dançarinos presentes:</strong>
+    <div class="checks"><label><input type="checkbox" data-dancer="Renan" onchange="salvarTudo()"> Renan</label><label><input type="checkbox" data-dancer="Abizael" onchange="salvarTudo()"> Abizael</label><label><input type="checkbox" data-dancer="Patrick" onchange="salvarTudo()"> Patrick</label><label><input type="checkbox" data-dancer="Jhonny Mendes" onchange="salvarTudo()"> Jhonny Mendes</label><label><input type="checkbox" data-dancer="João" onchange="salvarTudo()"> João</label><label><input type="checkbox" data-dancer="Murilo" onchange="salvarTudo()"> Murilo</label></div>
+    <textarea placeholder="Observação: atraso, falta, substituição..." oninput="salvarTudo()"></textarea>
+  </div>
+
+  <div class="campo chegadaBox">
+    <strong>⏰ Chegada automática:</strong>
+    <button onclick="registrarChegadaAgora(this)">Marcar chegada agora</button>
+    <div class="horaRealTxt">Horário real salvo: --</div>
+    <div class="resultadoAtraso semRegistro">Sem chegada registrada</div>
+<div style="margin-top:8px;background:#fff3cd;padding:8px;border-radius:8px;font-size:13px">
+🟢 Presente: até 20:00<br>
+🟡 Atrasado: 20:01 a 20:30<br>
+🔴 Atraso Crítico: 20:31 a 20:59<br>
+🚫 Falta Grave: após 21:00<br>
+❌ Falta: sem registro de chegada
+</div>
+
+  </div>
+
+  <button class="salvarBtn" onclick="salvarLinhaNoHistorico(this)">💾 Salvar no histórico</button>
+</section>
+
+<section class="cardEvento" data-date="2026-06-02">
+  <div class="topoCard">
+    <div>
+      <div class="data">02/06/2026</div>
+      <div class="dia">TERÇA</div>
+    </div>
+    <div class="status"></div>
+  </div>
+
+  <div class="campo">
+    <strong>🎤 Atração:</strong>
+    <p class="atracao">TRIBUTO DIVAS DA MUSICA</p>
+  </div>
+
+  <div class="campo">
+    <strong>🕺 Pocket Show:</strong>
+    <p class="pocket">Michael Jackson | Tributo</p>
+  </div>
+
+  <div class="campo">
+    <strong>📝 Observação do evento:</strong>
+    <p class="obsEvento">Sem observação</p>
+  </div>
+
+  <div class="campo presenca">
+    <strong>✅ Dançarinos presentes:</strong>
+    <div class="checks"><label><input type="checkbox" data-dancer="Renan" onchange="salvarTudo()"> Renan</label><label><input type="checkbox" data-dancer="Abizael" onchange="salvarTudo()"> Abizael</label><label><input type="checkbox" data-dancer="Patrick" onchange="salvarTudo()"> Patrick</label><label><input type="checkbox" data-dancer="Jhonny Mendes" onchange="salvarTudo()"> Jhonny Mendes</label><label><input type="checkbox" data-dancer="João" onchange="salvarTudo()"> João</label><label><input type="checkbox" data-dancer="Murilo" onchange="salvarTudo()"> Murilo</label></div>
+    <textarea placeholder="Observação: atraso, falta, substituição..." oninput="salvarTudo()"></textarea>
+  </div>
+
+  <div class="campo chegadaBox">
+    <strong>⏰ Chegada automática:</strong>
+    <button onclick="registrarChegadaAgora(this)">Marcar chegada agora</button>
+    <div class="horaRealTxt">Horário real salvo: --</div>
+    <div class="resultadoAtraso semRegistro">Sem chegada registrada</div>
+<div style="margin-top:8px;background:#fff3cd;padding:8px;border-radius:8px;font-size:13px">
+🟢 Presente: até 20:00<br>
+🟡 Atrasado: 20:01 a 20:30<br>
+🔴 Atraso Crítico: 20:31 a 20:59<br>
+🚫 Falta Grave: após 21:00<br>
+❌ Falta: sem registro de chegada
+</div>
+
+  </div>
+
+  <button class="salvarBtn" onclick="salvarLinhaNoHistorico(this)">💾 Salvar no histórico</button>
+</section>
+
+<section class="cardEvento" data-date="2026-06-03">
+  <div class="topoCard">
+    <div>
+      <div class="data">03/06/2026</div>
+      <div class="dia">QUARTA</div>
+    </div>
+    <div class="status"></div>
+  </div>
+
+  <div class="campo">
+    <strong>🎤 Atração:</strong>
+    <p class="atracao">NOITE DOS BEATLES - Tributo com Star Beatles</p>
+  </div>
+
+  <div class="campo">
+    <strong>🕺 Pocket Show:</strong>
+    <p class="pocket">Michael Jackson | Tributo</p>
+  </div>
+
+  <div class="campo">
+    <strong>📝 Observação do evento:</strong>
+    <p class="obsEvento">Sem observação</p>
+  </div>
+
+  <div class="campo presenca">
+    <strong>✅ Dançarinos presentes:</strong>
+    <div class="checks"><label><input type="checkbox" data-dancer="Renan" onchange="salvarTudo()"> Renan</label><label><input type="checkbox" data-dancer="Abizael" onchange="salvarTudo()"> Abizael</label><label><input type="checkbox" data-dancer="Patrick" onchange="salvarTudo()"> Patrick</label><label><input type="checkbox" data-dancer="Jhonny Mendes" onchange="salvarTudo()"> Jhonny Mendes</label><label><input type="checkbox" data-dancer="João" onchange="salvarTudo()"> João</label><label><input type="checkbox" data-dancer="Murilo" onchange="salvarTudo()"> Murilo</label></div>
+    <textarea placeholder="Observação: atraso, falta, substituição..." oninput="salvarTudo()"></textarea>
+  </div>
+
+  <div class="campo chegadaBox">
+    <strong>⏰ Chegada automática:</strong>
+    <button onclick="registrarChegadaAgora(this)">Marcar chegada agora</button>
+    <div class="horaRealTxt">Horário real salvo: --</div>
+    <div class="resultadoAtraso semRegistro">Sem chegada registrada</div>
+<div style="margin-top:8px;background:#fff3cd;padding:8px;border-radius:8px;font-size:13px">
+🟢 Presente: até 20:00<br>
+🟡 Atrasado: 20:01 a 20:30<br>
+🔴 Atraso Crítico: 20:31 a 20:59<br>
+🚫 Falta Grave: após 21:00<br>
+❌ Falta: sem registro de chegada
+</div>
+
+  </div>
+
+  <button class="salvarBtn" onclick="salvarLinhaNoHistorico(this)">💾 Salvar no histórico</button>
+</section>
+
+<section class="cardEvento" data-date="2026-06-04">
+  <div class="topoCard">
+    <div>
+      <div class="data">04/06/2026</div>
+      <div class="dia">QUINTA</div>
+    </div>
+    <div class="status"></div>
+  </div>
+
+  <div class="campo">
+    <strong>🎤 Atração:</strong>
+    <p class="atracao">NOITE DO ELVIS - Tributo com Johnny Grace</p>
+  </div>
+
+  <div class="campo">
+    <strong>🕺 Pocket Show:</strong>
+    <p class="pocket">Pocket Divas | Tributo</p>
+  </div>
+
+  <div class="campo">
+    <strong>📝 Observação do evento:</strong>
+    <p class="obsEvento">Sem observação</p>
+  </div>
+
+  <div class="campo presenca">
+    <strong>✅ Dançarinos presentes:</strong>
+    <div class="checks"><label><input type="checkbox" data-dancer="Renan" onchange="salvarTudo()"> Renan</label><label><input type="checkbox" data-dancer="Abizael" onchange="salvarTudo()"> Abizael</label><label><input type="checkbox" data-dancer="Patrick" onchange="salvarTudo()"> Patrick</label><label><input type="checkbox" data-dancer="Jhonny Mendes" onchange="salvarTudo()"> Jhonny Mendes</label><label><input type="checkbox" data-dancer="João" onchange="salvarTudo()"> João</label><label><input type="checkbox" data-dancer="Murilo" onchange="salvarTudo()"> Murilo</label></div>
+    <textarea placeholder="Observação: atraso, falta, substituição..." oninput="salvarTudo()"></textarea>
+  </div>
+
+  <div class="campo chegadaBox">
+    <strong>⏰ Chegada automática:</strong>
+    <button onclick="registrarChegadaAgora(this)">Marcar chegada agora</button>
+    <div class="horaRealTxt">Horário real salvo: --</div>
+    <div class="resultadoAtraso semRegistro">Sem chegada registrada</div>
+<div style="margin-top:8px;background:#fff3cd;padding:8px;border-radius:8px;font-size:13px">
+🟢 Presente: até 20:00<br>
+🟡 Atrasado: 20:01 a 20:30<br>
+🔴 Atraso Crítico: 20:31 a 20:59<br>
+🚫 Falta Grave: após 21:00<br>
+❌ Falta: sem registro de chegada
+</div>
+
+  </div>
+
+  <button class="salvarBtn" onclick="salvarLinhaNoHistorico(this)">💾 Salvar no histórico</button>
+</section>
+
+<section class="cardEvento" data-date="2026-06-05">
+  <div class="topoCard">
+    <div>
+      <div class="data">05/06/2026</div>
+      <div class="dia">SEXTA</div>
+    </div>
+    <div class="status"></div>
+  </div>
+
+  <div class="campo">
+    <strong>🎤 Atração:</strong>
+    <p class="atracao">ESPECIAL MICHAEL JACKSON TRIBUTO + THE CLASSIC ROCKERS</p>
+  </div>
+
+  <div class="campo">
+    <strong>🕺 Pocket Show:</strong>
+    <p class="pocket">Sem pocket informado</p>
+  </div>
+
+  <div class="campo">
+    <strong>📝 Observação do evento:</strong>
+    <p class="obsEvento">Sem observação</p>
+  </div>
+
+  <div class="campo presenca">
+    <strong>✅ Dançarinos presentes:</strong>
+    <div class="checks"><label><input type="checkbox" data-dancer="Renan" onchange="salvarTudo()"> Renan</label><label><input type="checkbox" data-dancer="Abizael" onchange="salvarTudo()"> Abizael</label><label><input type="checkbox" data-dancer="Patrick" onchange="salvarTudo()"> Patrick</label><label><input type="checkbox" data-dancer="Jhonny Mendes" onchange="salvarTudo()"> Jhonny Mendes</label><label><input type="checkbox" data-dancer="João" onchange="salvarTudo()"> João</label><label><input type="checkbox" data-dancer="Murilo" onchange="salvarTudo()"> Murilo</label></div>
+    <textarea placeholder="Observação: atraso, falta, substituição..." oninput="salvarTudo()"></textarea>
+  </div>
+
+  <div class="campo chegadaBox">
+    <strong>⏰ Chegada automática:</strong>
+    <button onclick="registrarChegadaAgora(this)">Marcar chegada agora</button>
+    <div class="horaRealTxt">Horário real salvo: --</div>
+    <div class="resultadoAtraso semRegistro">Sem chegada registrada</div>
+<div style="margin-top:8px;background:#fff3cd;padding:8px;border-radius:8px;font-size:13px">
+🟢 Presente: até 20:00<br>
+🟡 Atrasado: 20:01 a 20:30<br>
+🔴 Atraso Crítico: 20:31 a 20:59<br>
+🚫 Falta Grave: após 21:00<br>
+❌ Falta: sem registro de chegada
+</div>
+
+  </div>
+
+  <button class="salvarBtn" onclick="salvarLinhaNoHistorico(this)">💾 Salvar no histórico</button>
+</section>
+
+<section class="cardEvento" data-date="2026-06-06">
+  <div class="topoCard">
+    <div>
+      <div class="data">06/06/2026</div>
+      <div class="dia">SÁBADO</div>
+    </div>
+    <div class="status"></div>
+  </div>
+
+  <div class="campo">
+    <strong>🎤 Atração:</strong>
+    <p class="atracao">The CLASSIC ROCKERS Show - Clássicos do Rock</p>
+  </div>
+
+  <div class="campo">
+    <strong>🕺 Pocket Show:</strong>
+    <p class="pocket">Freddie Mercury | Tributo</p>
+  </div>
+
+  <div class="campo">
+    <strong>📝 Observação do evento:</strong>
+    <p class="obsEvento">Guitarríssima evento escola de música 17h às 18h30</p>
+  </div>
+
+  <div class="campo presenca">
+    <strong>✅ Dançarinos presentes:</strong>
+    <div class="checks"><label><input type="checkbox" data-dancer="Renan" onchange="salvarTudo()"> Renan</label><label><input type="checkbox" data-dancer="Abizael" onchange="salvarTudo()"> Abizael</label><label><input type="checkbox" data-dancer="Patrick" onchange="salvarTudo()"> Patrick</label><label><input type="checkbox" data-dancer="Jhonny Mendes" onchange="salvarTudo()"> Jhonny Mendes</label><label><input type="checkbox" data-dancer="João" onchange="salvarTudo()"> João</label><label><input type="checkbox" data-dancer="Murilo" onchange="salvarTudo()"> Murilo</label></div>
+    <textarea placeholder="Observação: atraso, falta, substituição..." oninput="salvarTudo()"></textarea>
+  </div>
+
+  <div class="campo chegadaBox">
+    <strong>⏰ Chegada automática:</strong>
+    <button onclick="registrarChegadaAgora(this)">Marcar chegada agora</button>
+    <div class="horaRealTxt">Horário real salvo: --</div>
+    <div class="resultadoAtraso semRegistro">Sem chegada registrada</div>
+<div style="margin-top:8px;background:#fff3cd;padding:8px;border-radius:8px;font-size:13px">
+🟢 Presente: até 20:00<br>
+🟡 Atrasado: 20:01 a 20:30<br>
+🔴 Atraso Crítico: 20:31 a 20:59<br>
+🚫 Falta Grave: após 21:00<br>
+❌ Falta: sem registro de chegada
+</div>
+
+  </div>
+
+  <button class="salvarBtn" onclick="salvarLinhaNoHistorico(this)">💾 Salvar no histórico</button>
+</section>
+
+<section class="cardEvento" data-date="2026-06-07">
+  <div class="topoCard">
+    <div>
+      <div class="data">07/06/2026</div>
+      <div class="dia">DOMINGO</div>
+    </div>
+    <div class="status"></div>
+  </div>
+
+  <div class="campo">
+    <strong>🎤 Atração:</strong>
+    <p class="atracao">Sem atração informada</p>
+  </div>
+
+  <div class="campo">
+    <strong>🕺 Pocket Show:</strong>
+    <p class="pocket">Freddie Mercury | Tributo</p>
+  </div>
+
+  <div class="campo">
+    <strong>📝 Observação do evento:</strong>
+    <p class="obsEvento">Sem observação</p>
+  </div>
+
+  <div class="campo presenca">
+    <strong>✅ Dançarinos presentes:</strong>
+    <div class="checks"><label><input type="checkbox" data-dancer="Renan" onchange="salvarTudo()"> Renan</label><label><input type="checkbox" data-dancer="Abizael" onchange="salvarTudo()"> Abizael</label><label><input type="checkbox" data-dancer="Patrick" onchange="salvarTudo()"> Patrick</label><label><input type="checkbox" data-dancer="Jhonny Mendes" onchange="salvarTudo()"> Jhonny Mendes</label><label><input type="checkbox" data-dancer="João" onchange="salvarTudo()"> João</label><label><input type="checkbox" data-dancer="Murilo" onchange="salvarTudo()"> Murilo</label></div>
+    <textarea placeholder="Observação: atraso, falta, substituição..." oninput="salvarTudo()"></textarea>
+  </div>
+
+  <div class="campo chegadaBox">
+    <strong>⏰ Chegada automática:</strong>
+    <button onclick="registrarChegadaAgora(this)">Marcar chegada agora</button>
+    <div class="horaRealTxt">Horário real salvo: --</div>
+    <div class="resultadoAtraso semRegistro">Sem chegada registrada</div>
+<div style="margin-top:8px;background:#fff3cd;padding:8px;border-radius:8px;font-size:13px">
+🟢 Presente: até 20:00<br>
+🟡 Atrasado: 20:01 a 20:30<br>
+🔴 Atraso Crítico: 20:31 a 20:59<br>
+🚫 Falta Grave: após 21:00<br>
+❌ Falta: sem registro de chegada
+</div>
+
+  </div>
+
+  <button class="salvarBtn" onclick="salvarLinhaNoHistorico(this)">💾 Salvar no histórico</button>
+</section>
+
+<section class="cardEvento" data-date="2026-06-08">
+  <div class="topoCard">
+    <div>
+      <div class="data">08/06/2026</div>
+      <div class="dia">SEGUNDA</div>
+    </div>
+    <div class="status"></div>
+  </div>
+
+  <div class="campo">
+    <strong>🎤 Atração:</strong>
+    <p class="atracao">FREDDIE-VERSO - Tributo Freddie Mercury com Krony e Banda</p>
+  </div>
+
+  <div class="campo">
+    <strong>🕺 Pocket Show:</strong>
+    <p class="pocket">Michael Jackson | Tributo</p>
+  </div>
+
+  <div class="campo">
+    <strong>📝 Observação do evento:</strong>
+    <p class="obsEvento">Sem observação</p>
+  </div>
+
+  <div class="campo presenca">
+    <strong>✅ Dançarinos presentes:</strong>
+    <div class="checks"><label><input type="checkbox" data-dancer="Renan" onchange="salvarTudo()"> Renan</label><label><input type="checkbox" data-dancer="Abizael" onchange="salvarTudo()"> Abizael</label><label><input type="checkbox" data-dancer="Patrick" onchange="salvarTudo()"> Patrick</label><label><input type="checkbox" data-dancer="Jhonny Mendes" onchange="salvarTudo()"> Jhonny Mendes</label><label><input type="checkbox" data-dancer="João" onchange="salvarTudo()"> João</label><label><input type="checkbox" data-dancer="Murilo" onchange="salvarTudo()"> Murilo</label></div>
+    <textarea placeholder="Observação: atraso, falta, substituição..." oninput="salvarTudo()"></textarea>
+  </div>
+
+  <div class="campo chegadaBox">
+    <strong>⏰ Chegada automática:</strong>
+    <button onclick="registrarChegadaAgora(this)">Marcar chegada agora</button>
+    <div class="horaRealTxt">Horário real salvo: --</div>
+    <div class="resultadoAtraso semRegistro">Sem chegada registrada</div>
+<div style="margin-top:8px;background:#fff3cd;padding:8px;border-radius:8px;font-size:13px">
+🟢 Presente: até 20:00<br>
+🟡 Atrasado: 20:01 a 20:30<br>
+🔴 Atraso Crítico: 20:31 a 20:59<br>
+🚫 Falta Grave: após 21:00<br>
+❌ Falta: sem registro de chegada
+</div>
+
+  </div>
+
+  <button class="salvarBtn" onclick="salvarLinhaNoHistorico(this)">💾 Salvar no histórico</button>
+</section>
+
+<section class="cardEvento" data-date="2026-06-09">
+  <div class="topoCard">
+    <div>
+      <div class="data">09/06/2026</div>
+      <div class="dia">TERÇA</div>
+    </div>
+    <div class="status"></div>
+  </div>
+
+  <div class="campo">
+    <strong>🎤 Atração:</strong>
+    <p class="atracao">TRIBUTO DIVAS DA MUSICA</p>
+  </div>
+
+  <div class="campo">
+    <strong>🕺 Pocket Show:</strong>
+    <p class="pocket">Michael Jackson | Tributo</p>
+  </div>
+
+  <div class="campo">
+    <strong>📝 Observação do evento:</strong>
+    <p class="obsEvento">Sem observação</p>
+  </div>
+
+  <div class="campo presenca">
+    <strong>✅ Dançarinos presentes:</strong>
+    <div class="checks"><label><input type="checkbox" data-dancer="Renan" onchange="salvarTudo()"> Renan</label><label><input type="checkbox" data-dancer="Abizael" onchange="salvarTudo()"> Abizael</label><label><input type="checkbox" data-dancer="Patrick" onchange="salvarTudo()"> Patrick</label><label><input type="checkbox" data-dancer="Jhonny Mendes" onchange="salvarTudo()"> Jhonny Mendes</label><label><input type="checkbox" data-dancer="João" onchange="salvarTudo()"> João</label><label><input type="checkbox" data-dancer="Murilo" onchange="salvarTudo()"> Murilo</label></div>
+    <textarea placeholder="Observação: atraso, falta, substituição..." oninput="salvarTudo()"></textarea>
+  </div>
+
+  <div class="campo chegadaBox">
+    <strong>⏰ Chegada automática:</strong>
+    <button onclick="registrarChegadaAgora(this)">Marcar chegada agora</button>
+    <div class="horaRealTxt">Horário real salvo: --</div>
+    <div class="resultadoAtraso semRegistro">Sem chegada registrada</div>
+<div style="margin-top:8px;background:#fff3cd;padding:8px;border-radius:8px;font-size:13px">
+🟢 Presente: até 20:00<br>
+🟡 Atrasado: 20:01 a 20:30<br>
+🔴 Atraso Crítico: 20:31 a 20:59<br>
+🚫 Falta Grave: após 21:00<br>
+❌ Falta: sem registro de chegada
+</div>
+
+  </div>
+
+  <button class="salvarBtn" onclick="salvarLinhaNoHistorico(this)">💾 Salvar no histórico</button>
+</section>
+
+<section class="cardEvento" data-date="2026-06-10">
+  <div class="topoCard">
+    <div>
+      <div class="data">10/06/2026</div>
+      <div class="dia">QUARTA</div>
+    </div>
+    <div class="status"></div>
+  </div>
+
+  <div class="campo">
+    <strong>🎤 Atração:</strong>
+    <p class="atracao">NOITE DOS BEATLES - Tributo com Star Beatles</p>
+  </div>
+
+  <div class="campo">
+    <strong>🕺 Pocket Show:</strong>
+    <p class="pocket">Freddie Mercury | Tributo</p>
+  </div>
+
+  <div class="campo">
+    <strong>📝 Observação do evento:</strong>
+    <p class="obsEvento">Sem observação</p>
+  </div>
+
+  <div class="campo presenca">
+    <strong>✅ Dançarinos presentes:</strong>
+    <div class="checks"><label><input type="checkbox" data-dancer="Renan" onchange="salvarTudo()"> Renan</label><label><input type="checkbox" data-dancer="Abizael" onchange="salvarTudo()"> Abizael</label><label><input type="checkbox" data-dancer="Patrick" onchange="salvarTudo()"> Patrick</label><label><input type="checkbox" data-dancer="Jhonny Mendes" onchange="salvarTudo()"> Jhonny Mendes</label><label><input type="checkbox" data-dancer="João" onchange="salvarTudo()"> João</label><label><input type="checkbox" data-dancer="Murilo" onchange="salvarTudo()"> Murilo</label></div>
+    <textarea placeholder="Observação: atraso, falta, substituição..." oninput="salvarTudo()"></textarea>
+  </div>
+
+  <div class="campo chegadaBox">
+    <strong>⏰ Chegada automática:</strong>
+    <button onclick="registrarChegadaAgora(this)">Marcar chegada agora</button>
+    <div class="horaRealTxt">Horário real salvo: --</div>
+    <div class="resultadoAtraso semRegistro">Sem chegada registrada</div>
+<div style="margin-top:8px;background:#fff3cd;padding:8px;border-radius:8px;font-size:13px">
+🟢 Presente: até 20:00<br>
+🟡 Atrasado: 20:01 a 20:30<br>
+🔴 Atraso Crítico: 20:31 a 20:59<br>
+🚫 Falta Grave: após 21:00<br>
+❌ Falta: sem registro de chegada
+</div>
+
+  </div>
+
+  <button class="salvarBtn" onclick="salvarLinhaNoHistorico(this)">💾 Salvar no histórico</button>
+</section>
+
+<section class="cardEvento" data-date="2026-06-11">
+  <div class="topoCard">
+    <div>
+      <div class="data">11/06/2026</div>
+      <div class="dia">QUINTA</div>
+    </div>
+    <div class="status"></div>
+  </div>
+
+  <div class="campo">
+    <strong>🎤 Atração:</strong>
+    <p class="atracao">NOITE DO ELVIS - Tributo com Johnny Grace</p>
+  </div>
+
+  <div class="campo">
+    <strong>🕺 Pocket Show:</strong>
+    <p class="pocket">Pocket Divas | Tributo</p>
+  </div>
+
+  <div class="campo">
+    <strong>📝 Observação do evento:</strong>
+    <p class="obsEvento">Sem observação</p>
+  </div>
+
+  <div class="campo presenca">
+    <strong>✅ Dançarinos presentes:</strong>
+    <div class="checks"><label><input type="checkbox" data-dancer="Renan" onchange="salvarTudo()"> Renan</label><label><input type="checkbox" data-dancer="Abizael" onchange="salvarTudo()"> Abizael</label><label><input type="checkbox" data-dancer="Patrick" onchange="salvarTudo()"> Patrick</label><label><input type="checkbox" data-dancer="Jhonny Mendes" onchange="salvarTudo()"> Jhonny Mendes</label><label><input type="checkbox" data-dancer="João" onchange="salvarTudo()"> João</label><label><input type="checkbox" data-dancer="Murilo" onchange="salvarTudo()"> Murilo</label></div>
+    <textarea placeholder="Observação: atraso, falta, substituição..." oninput="salvarTudo()"></textarea>
+  </div>
+
+  <div class="campo chegadaBox">
+    <strong>⏰ Chegada automática:</strong>
+    <button onclick="registrarChegadaAgora(this)">Marcar chegada agora</button>
+    <div class="horaRealTxt">Horário real salvo: --</div>
+    <div class="resultadoAtraso semRegistro">Sem chegada registrada</div>
+<div style="margin-top:8px;background:#fff3cd;padding:8px;border-radius:8px;font-size:13px">
+🟢 Presente: até 20:00<br>
+🟡 Atrasado: 20:01 a 20:30<br>
+🔴 Atraso Crítico: 20:31 a 20:59<br>
+🚫 Falta Grave: após 21:00<br>
+❌ Falta: sem registro de chegada
+</div>
+
+  </div>
+
+  <button class="salvarBtn" onclick="salvarLinhaNoHistorico(this)">💾 Salvar no histórico</button>
+</section>
+
+<section class="cardEvento" data-date="2026-06-12">
+  <div class="topoCard">
+    <div>
+      <div class="data">12/06/2026</div>
+      <div class="dia">SEXTA</div>
+    </div>
+    <div class="status"></div>
+  </div>
+
+  <div class="campo">
+    <strong>🎤 Atração:</strong>
+    <p class="atracao">DIA DOS NAMORADOS - THE CLASSIC ROCKERS LOVE SONGS + POCKET TRIBUTO FREDDIE MERCURY</p>
+  </div>
+
+  <div class="campo">
+    <strong>🕺 Pocket Show:</strong>
+    <p class="pocket">Sem pocket informado</p>
+  </div>
+
+  <div class="campo">
+    <strong>📝 Observação do evento:</strong>
+    <p class="obsEvento">Sem observação</p>
+  </div>
+
+  <div class="campo presenca">
+    <strong>✅ Dançarinos presentes:</strong>
+    <div class="checks"><label><input type="checkbox" data-dancer="Renan" onchange="salvarTudo()"> Renan</label><label><input type="checkbox" data-dancer="Abizael" onchange="salvarTudo()"> Abizael</label><label><input type="checkbox" data-dancer="Patrick" onchange="salvarTudo()"> Patrick</label><label><input type="checkbox" data-dancer="Jhonny Mendes" onchange="salvarTudo()"> Jhonny Mendes</label><label><input type="checkbox" data-dancer="João" onchange="salvarTudo()"> João</label><label><input type="checkbox" data-dancer="Murilo" onchange="salvarTudo()"> Murilo</label></div>
+    <textarea placeholder="Observação: atraso, falta, substituição..." oninput="salvarTudo()"></textarea>
+  </div>
+
+  <div class="campo chegadaBox">
+    <strong>⏰ Chegada automática:</strong>
+    <button onclick="registrarChegadaAgora(this)">Marcar chegada agora</button>
+    <div class="horaRealTxt">Horário real salvo: --</div>
+    <div class="resultadoAtraso semRegistro">Sem chegada registrada</div>
+<div style="margin-top:8px;background:#fff3cd;padding:8px;border-radius:8px;font-size:13px">
+🟢 Presente: até 20:00<br>
+🟡 Atrasado: 20:01 a 20:30<br>
+🔴 Atraso Crítico: 20:31 a 20:59<br>
+🚫 Falta Grave: após 21:00<br>
+❌ Falta: sem registro de chegada
+</div>
+
+  </div>
+
+  <button class="salvarBtn" onclick="salvarLinhaNoHistorico(this)">💾 Salvar no histórico</button>
+</section>
+
+<section class="cardEvento" data-date="2026-06-13">
+  <div class="topoCard">
+    <div>
+      <div class="data">13/06/2026</div>
+      <div class="dia">SÁBADO</div>
+    </div>
+    <div class="status"></div>
+  </div>
+
+  <div class="campo">
+    <strong>🎤 Atração:</strong>
+    <p class="atracao">ESPECIAL MICHAEL JACKSON TRIBUTO + FREDDIE MERCURY</p>
+  </div>
+
+  <div class="campo">
+    <strong>🕺 Pocket Show:</strong>
+    <p class="pocket">Sem pocket informado</p>
+  </div>
+
+  <div class="campo">
+    <strong>📝 Observação do evento:</strong>
+    <p class="obsEvento">JOGO 19H</p>
+  </div>
+
+  <div class="campo presenca">
+    <strong>✅ Dançarinos presentes:</strong>
+    <div class="checks"><label><input type="checkbox" data-dancer="Renan" onchange="salvarTudo()"> Renan</label><label><input type="checkbox" data-dancer="Abizael" onchange="salvarTudo()"> Abizael</label><label><input type="checkbox" data-dancer="Patrick" onchange="salvarTudo()"> Patrick</label><label><input type="checkbox" data-dancer="Jhonny Mendes" onchange="salvarTudo()"> Jhonny Mendes</label><label><input type="checkbox" data-dancer="João" onchange="salvarTudo()"> João</label><label><input type="checkbox" data-dancer="Murilo" onchange="salvarTudo()"> Murilo</label></div>
+    <textarea placeholder="Observação: atraso, falta, substituição..." oninput="salvarTudo()"></textarea>
+  </div>
+
+  <div class="campo chegadaBox">
+    <strong>⏰ Chegada automática:</strong>
+    <button onclick="registrarChegadaAgora(this)">Marcar chegada agora</button>
+    <div class="horaRealTxt">Horário real salvo: --</div>
+    <div class="resultadoAtraso semRegistro">Sem chegada registrada</div>
+<div style="margin-top:8px;background:#fff3cd;padding:8px;border-radius:8px;font-size:13px">
+🟢 Presente: até 20:00<br>
+🟡 Atrasado: 20:01 a 20:30<br>
+🔴 Atraso Crítico: 20:31 a 20:59<br>
+🚫 Falta Grave: após 21:00<br>
+❌ Falta: sem registro de chegada
+</div>
+
+  </div>
+
+  <button class="salvarBtn" onclick="salvarLinhaNoHistorico(this)">💾 Salvar no histórico</button>
+</section>
+
+<section class="cardEvento" data-date="2026-06-14">
+  <div class="topoCard">
+    <div>
+      <div class="data">14/06/2026</div>
+      <div class="dia">DOMINGO</div>
+    </div>
+    <div class="status"></div>
+  </div>
+
+  <div class="campo">
+    <strong>🎤 Atração:</strong>
+    <p class="atracao">ESPECIAL ELTON JOHN - TRIBUTO com 70's Show</p>
+  </div>
+
+  <div class="campo">
+    <strong>🕺 Pocket Show:</strong>
+    <p class="pocket">Freddie Mercury | Tributo</p>
+  </div>
+
+  <div class="campo">
+    <strong>📝 Observação do evento:</strong>
+    <p class="obsEvento">Sem observação</p>
+  </div>
+
+  <div class="campo presenca">
+    <strong>✅ Dançarinos presentes:</strong>
+    <div class="checks"><label><input type="checkbox" data-dancer="Renan" onchange="salvarTudo()"> Renan</label><label><input type="checkbox" data-dancer="Abizael" onchange="salvarTudo()"> Abizael</label><label><input type="checkbox" data-dancer="Patrick" onchange="salvarTudo()"> Patrick</label><label><input type="checkbox" data-dancer="Jhonny Mendes" onchange="salvarTudo()"> Jhonny Mendes</label><label><input type="checkbox" data-dancer="João" onchange="salvarTudo()"> João</label><label><input type="checkbox" data-dancer="Murilo" onchange="salvarTudo()"> Murilo</label></div>
+    <textarea placeholder="Observação: atraso, falta, substituição..." oninput="salvarTudo()"></textarea>
+  </div>
+
+  <div class="campo chegadaBox">
+    <strong>⏰ Chegada automática:</strong>
+    <button onclick="registrarChegadaAgora(this)">Marcar chegada agora</button>
+    <div class="horaRealTxt">Horário real salvo: --</div>
+    <div class="resultadoAtraso semRegistro">Sem chegada registrada</div>
+<div style="margin-top:8px;background:#fff3cd;padding:8px;border-radius:8px;font-size:13px">
+🟢 Presente: até 20:00<br>
+🟡 Atrasado: 20:01 a 20:30<br>
+🔴 Atraso Crítico: 20:31 a 20:59<br>
+🚫 Falta Grave: após 21:00<br>
+❌ Falta: sem registro de chegada
+</div>
+
+  </div>
+
+  <button class="salvarBtn" onclick="salvarLinhaNoHistorico(this)">💾 Salvar no histórico</button>
+</section>
+
+<section class="cardEvento" data-date="2026-06-15">
+  <div class="topoCard">
+    <div>
+      <div class="data">15/06/2026</div>
+      <div class="dia">SEGUNDA</div>
+    </div>
+    <div class="status"></div>
+  </div>
+
+  <div class="campo">
+    <strong>🎤 Atração:</strong>
+    <p class="atracao">FREDDIE-VERSO - Tributo Freddie Mercury com Krony e Banda</p>
+  </div>
+
+  <div class="campo">
+    <strong>🕺 Pocket Show:</strong>
+    <p class="pocket">Michael Jackson | Tributo</p>
+  </div>
+
+  <div class="campo">
+    <strong>📝 Observação do evento:</strong>
+    <p class="obsEvento">Sem observação</p>
+  </div>
+
+  <div class="campo presenca">
+    <strong>✅ Dançarinos presentes:</strong>
+    <div class="checks"><label><input type="checkbox" data-dancer="Renan" onchange="salvarTudo()"> Renan</label><label><input type="checkbox" data-dancer="Abizael" onchange="salvarTudo()"> Abizael</label><label><input type="checkbox" data-dancer="Patrick" onchange="salvarTudo()"> Patrick</label><label><input type="checkbox" data-dancer="Jhonny Mendes" onchange="salvarTudo()"> Jhonny Mendes</label><label><input type="checkbox" data-dancer="João" onchange="salvarTudo()"> João</label><label><input type="checkbox" data-dancer="Murilo" onchange="salvarTudo()"> Murilo</label></div>
+    <textarea placeholder="Observação: atraso, falta, substituição..." oninput="salvarTudo()"></textarea>
+  </div>
+
+  <div class="campo chegadaBox">
+    <strong>⏰ Chegada automática:</strong>
+    <button onclick="registrarChegadaAgora(this)">Marcar chegada agora</button>
+    <div class="horaRealTxt">Horário real salvo: --</div>
+    <div class="resultadoAtraso semRegistro">Sem chegada registrada</div>
+<div style="margin-top:8px;background:#fff3cd;padding:8px;border-radius:8px;font-size:13px">
+🟢 Presente: até 20:00<br>
+🟡 Atrasado: 20:01 a 20:30<br>
+🔴 Atraso Crítico: 20:31 a 20:59<br>
+🚫 Falta Grave: após 21:00<br>
+❌ Falta: sem registro de chegada
+</div>
+
+  </div>
+
+  <button class="salvarBtn" onclick="salvarLinhaNoHistorico(this)">💾 Salvar no histórico</button>
+</section>
+
+<section class="cardEvento" data-date="2026-06-16">
+  <div class="topoCard">
+    <div>
+      <div class="data">16/06/2026</div>
+      <div class="dia">TERÇA</div>
+    </div>
+    <div class="status"></div>
+  </div>
+
+  <div class="campo">
+    <strong>🎤 Atração:</strong>
+    <p class="atracao">TRIBUTO DIVAS DA MUSICA</p>
+  </div>
+
+  <div class="campo">
+    <strong>🕺 Pocket Show:</strong>
+    <p class="pocket">Michael Jackson | Tributo</p>
+  </div>
+
+  <div class="campo">
+    <strong>📝 Observação do evento:</strong>
+    <p class="obsEvento">Sem observação</p>
+  </div>
+
+  <div class="campo presenca">
+    <strong>✅ Dançarinos presentes:</strong>
+    <div class="checks"><label><input type="checkbox" data-dancer="Renan" onchange="salvarTudo()"> Renan</label><label><input type="checkbox" data-dancer="Abizael" onchange="salvarTudo()"> Abizael</label><label><input type="checkbox" data-dancer="Patrick" onchange="salvarTudo()"> Patrick</label><label><input type="checkbox" data-dancer="Jhonny Mendes" onchange="salvarTudo()"> Jhonny Mendes</label><label><input type="checkbox" data-dancer="João" onchange="salvarTudo()"> João</label><label><input type="checkbox" data-dancer="Murilo" onchange="salvarTudo()"> Murilo</label></div>
+    <textarea placeholder="Observação: atraso, falta, substituição..." oninput="salvarTudo()"></textarea>
+  </div>
+
+  <div class="campo chegadaBox">
+    <strong>⏰ Chegada automática:</strong>
+    <button onclick="registrarChegadaAgora(this)">Marcar chegada agora</button>
+    <div class="horaRealTxt">Horário real salvo: --</div>
+    <div class="resultadoAtraso semRegistro">Sem chegada registrada</div>
+<div style="margin-top:8px;background:#fff3cd;padding:8px;border-radius:8px;font-size:13px">
+🟢 Presente: até 20:00<br>
+🟡 Atrasado: 20:01 a 20:30<br>
+🔴 Atraso Crítico: 20:31 a 20:59<br>
+🚫 Falta Grave: após 21:00<br>
+❌ Falta: sem registro de chegada
+</div>
+
+  </div>
+
+  <button class="salvarBtn" onclick="salvarLinhaNoHistorico(this)">💾 Salvar no histórico</button>
+</section>
+
+<section class="cardEvento" data-date="2026-06-17">
+  <div class="topoCard">
+    <div>
+      <div class="data">17/06/2026</div>
+      <div class="dia">QUARTA</div>
+    </div>
+    <div class="status"></div>
+  </div>
+
+  <div class="campo">
+    <strong>🎤 Atração:</strong>
+    <p class="atracao">NOITE DOS BEATLES - Tributo com Star Beatles</p>
+  </div>
+
+  <div class="campo">
+    <strong>🕺 Pocket Show:</strong>
+    <p class="pocket">Freddie Mercury | Tributo</p>
+  </div>
+
+  <div class="campo">
+    <strong>📝 Observação do evento:</strong>
+    <p class="obsEvento">Sem observação</p>
+  </div>
+
+  <div class="campo presenca">
+    <strong>✅ Dançarinos presentes:</strong>
+    <div class="checks"><label><input type="checkbox" data-dancer="Renan" onchange="salvarTudo()"> Renan</label><label><input type="checkbox" data-dancer="Abizael" onchange="salvarTudo()"> Abizael</label><label><input type="checkbox" data-dancer="Patrick" onchange="salvarTudo()"> Patrick</label><label><input type="checkbox" data-dancer="Jhonny Mendes" onchange="salvarTudo()"> Jhonny Mendes</label><label><input type="checkbox" data-dancer="João" onchange="salvarTudo()"> João</label><label><input type="checkbox" data-dancer="Murilo" onchange="salvarTudo()"> Murilo</label></div>
+    <textarea placeholder="Observação: atraso, falta, substituição..." oninput="salvarTudo()"></textarea>
+  </div>
+
+  <div class="campo chegadaBox">
+    <strong>⏰ Chegada automática:</strong>
+    <button onclick="registrarChegadaAgora(this)">Marcar chegada agora</button>
+    <div class="horaRealTxt">Horário real salvo: --</div>
+    <div class="resultadoAtraso semRegistro">Sem chegada registrada</div>
+<div style="margin-top:8px;background:#fff3cd;padding:8px;border-radius:8px;font-size:13px">
+🟢 Presente: até 20:00<br>
+🟡 Atrasado: 20:01 a 20:30<br>
+🔴 Atraso Crítico: 20:31 a 20:59<br>
+🚫 Falta Grave: após 21:00<br>
+❌ Falta: sem registro de chegada
+</div>
+
+  </div>
+
+  <button class="salvarBtn" onclick="salvarLinhaNoHistorico(this)">💾 Salvar no histórico</button>
+</section>
+
+<section class="cardEvento" data-date="2026-06-18">
+  <div class="topoCard">
+    <div>
+      <div class="data">18/06/2026</div>
+      <div class="dia">QUINTA</div>
+    </div>
+    <div class="status"></div>
+  </div>
+
+  <div class="campo">
+    <strong>🎤 Atração:</strong>
+    <p class="atracao">NOITE DO ELVIS - Tributo com Johnny Grace</p>
+  </div>
+
+  <div class="campo">
+    <strong>🕺 Pocket Show:</strong>
+    <p class="pocket">Pocket Divas | Tributo</p>
+  </div>
+
+  <div class="campo">
+    <strong>📝 Observação do evento:</strong>
+    <p class="obsEvento">Sem observação</p>
+  </div>
+
+  <div class="campo presenca">
+    <strong>✅ Dançarinos presentes:</strong>
+    <div class="checks"><label><input type="checkbox" data-dancer="Renan" onchange="salvarTudo()"> Renan</label><label><input type="checkbox" data-dancer="Abizael" onchange="salvarTudo()"> Abizael</label><label><input type="checkbox" data-dancer="Patrick" onchange="salvarTudo()"> Patrick</label><label><input type="checkbox" data-dancer="Jhonny Mendes" onchange="salvarTudo()"> Jhonny Mendes</label><label><input type="checkbox" data-dancer="João" onchange="salvarTudo()"> João</label><label><input type="checkbox" data-dancer="Murilo" onchange="salvarTudo()"> Murilo</label></div>
+    <textarea placeholder="Observação: atraso, falta, substituição..." oninput="salvarTudo()"></textarea>
+  </div>
+
+  <div class="campo chegadaBox">
+    <strong>⏰ Chegada automática:</strong>
+    <button onclick="registrarChegadaAgora(this)">Marcar chegada agora</button>
+    <div class="horaRealTxt">Horário real salvo: --</div>
+    <div class="resultadoAtraso semRegistro">Sem chegada registrada</div>
+<div style="margin-top:8px;background:#fff3cd;padding:8px;border-radius:8px;font-size:13px">
+🟢 Presente: até 20:00<br>
+🟡 Atrasado: 20:01 a 20:30<br>
+🔴 Atraso Crítico: 20:31 a 20:59<br>
+🚫 Falta Grave: após 21:00<br>
+❌ Falta: sem registro de chegada
+</div>
+
+  </div>
+
+  <button class="salvarBtn" onclick="salvarLinhaNoHistorico(this)">💾 Salvar no histórico</button>
+</section>
+
+<section class="cardEvento" data-date="2026-06-19">
+  <div class="topoCard">
+    <div>
+      <div class="data">19/06/2026</div>
+      <div class="dia">SEXTA</div>
+    </div>
+    <div class="status"></div>
+  </div>
+
+  <div class="campo">
+    <strong>🎤 Atração:</strong>
+    <p class="atracao">ESPECIAL MICHAEL JACKSON TRIBUTO</p>
+  </div>
+
+  <div class="campo">
+    <strong>🕺 Pocket Show:</strong>
+    <p class="pocket">Sem pocket informado</p>
+  </div>
+
+  <div class="campo">
+    <strong>📝 Observação do evento:</strong>
+    <p class="obsEvento">JOGO 21H30</p>
+  </div>
+
+  <div class="campo presenca">
+    <strong>✅ Dançarinos presentes:</strong>
+    <div class="checks"><label><input type="checkbox" data-dancer="Renan" onchange="salvarTudo()"> Renan</label><label><input type="checkbox" data-dancer="Abizael" onchange="salvarTudo()"> Abizael</label><label><input type="checkbox" data-dancer="Patrick" onchange="salvarTudo()"> Patrick</label><label><input type="checkbox" data-dancer="Jhonny Mendes" onchange="salvarTudo()"> Jhonny Mendes</label><label><input type="checkbox" data-dancer="João" onchange="salvarTudo()"> João</label><label><input type="checkbox" data-dancer="Murilo" onchange="salvarTudo()"> Murilo</label></div>
+    <textarea placeholder="Observação: atraso, falta, substituição..." oninput="salvarTudo()"></textarea>
+  </div>
+
+  <div class="campo chegadaBox">
+    <strong>⏰ Chegada automática:</strong>
+    <button onclick="registrarChegadaAgora(this)">Marcar chegada agora</button>
+    <div class="horaRealTxt">Horário real salvo: --</div>
+    <div class="resultadoAtraso semRegistro">Sem chegada registrada</div>
+<div style="margin-top:8px;background:#fff3cd;padding:8px;border-radius:8px;font-size:13px">
+🟢 Presente: até 20:00<br>
+🟡 Atrasado: 20:01 a 20:30<br>
+🔴 Atraso Crítico: 20:31 a 20:59<br>
+🚫 Falta Grave: após 21:00<br>
+❌ Falta: sem registro de chegada
+</div>
+
+  </div>
+
+  <button class="salvarBtn" onclick="salvarLinhaNoHistorico(this)">💾 Salvar no histórico</button>
+</section>
+
+<section class="cardEvento" data-date="2026-06-20">
+  <div class="topoCard">
+    <div>
+      <div class="data">20/06/2026</div>
+      <div class="dia">SÁBADO</div>
+    </div>
+    <div class="status"></div>
+  </div>
+
+  <div class="campo">
+    <strong>🎤 Atração:</strong>
+    <p class="atracao">The CLASSIC ROCKERS Show - Clássicos do Rock</p>
+  </div>
+
+  <div class="campo">
+    <strong>🕺 Pocket Show:</strong>
+    <p class="pocket">Freddie Mercury | Tributo</p>
+  </div>
+
+  <div class="campo">
+    <strong>📝 Observação do evento:</strong>
+    <p class="obsEvento">Sem observação</p>
+  </div>
+
+  <div class="campo presenca">
+    <strong>✅ Dançarinos presentes:</strong>
+    <div class="checks"><label><input type="checkbox" data-dancer="Renan" onchange="salvarTudo()"> Renan</label><label><input type="checkbox" data-dancer="Abizael" onchange="salvarTudo()"> Abizael</label><label><input type="checkbox" data-dancer="Patrick" onchange="salvarTudo()"> Patrick</label><label><input type="checkbox" data-dancer="Jhonny Mendes" onchange="salvarTudo()"> Jhonny Mendes</label><label><input type="checkbox" data-dancer="João" onchange="salvarTudo()"> João</label><label><input type="checkbox" data-dancer="Murilo" onchange="salvarTudo()"> Murilo</label></div>
+    <textarea placeholder="Observação: atraso, falta, substituição..." oninput="salvarTudo()"></textarea>
+  </div>
+
+  <div class="campo chegadaBox">
+    <strong>⏰ Chegada automática:</strong>
+    <button onclick="registrarChegadaAgora(this)">Marcar chegada agora</button>
+    <div class="horaRealTxt">Horário real salvo: --</div>
+    <div class="resultadoAtraso semRegistro">Sem chegada registrada</div>
+<div style="margin-top:8px;background:#fff3cd;padding:8px;border-radius:8px;font-size:13px">
+🟢 Presente: até 20:00<br>
+🟡 Atrasado: 20:01 a 20:30<br>
+🔴 Atraso Crítico: 20:31 a 20:59<br>
+🚫 Falta Grave: após 21:00<br>
+❌ Falta: sem registro de chegada
+</div>
+
+  </div>
+
+  <button class="salvarBtn" onclick="salvarLinhaNoHistorico(this)">💾 Salvar no histórico</button>
+</section>
+
+<section class="cardEvento" data-date="2026-06-21">
+  <div class="topoCard">
+    <div>
+      <div class="data">21/06/2026</div>
+      <div class="dia">DOMINGO</div>
+    </div>
+    <div class="status"></div>
+  </div>
+
+  <div class="campo">
+    <strong>🎤 Atração:</strong>
+    <p class="atracao">ESPECIAL ELTON JOHN - TRIBUTO com 70's Show</p>
+  </div>
+
+  <div class="campo">
+    <strong>🕺 Pocket Show:</strong>
+    <p class="pocket">Freddie Mercury | Tributo</p>
+  </div>
+
+  <div class="campo">
+    <strong>📝 Observação do evento:</strong>
+    <p class="obsEvento">Sem observação</p>
+  </div>
+
+  <div class="campo presenca">
+    <strong>✅ Dançarinos presentes:</strong>
+    <div class="checks"><label><input type="checkbox" data-dancer="Renan" onchange="salvarTudo()"> Renan</label><label><input type="checkbox" data-dancer="Abizael" onchange="salvarTudo()"> Abizael</label><label><input type="checkbox" data-dancer="Patrick" onchange="salvarTudo()"> Patrick</label><label><input type="checkbox" data-dancer="Jhonny Mendes" onchange="salvarTudo()"> Jhonny Mendes</label><label><input type="checkbox" data-dancer="João" onchange="salvarTudo()"> João</label><label><input type="checkbox" data-dancer="Murilo" onchange="salvarTudo()"> Murilo</label></div>
+    <textarea placeholder="Observação: atraso, falta, substituição..." oninput="salvarTudo()"></textarea>
+  </div>
+
+  <div class="campo chegadaBox">
+    <strong>⏰ Chegada automática:</strong>
+    <button onclick="registrarChegadaAgora(this)">Marcar chegada agora</button>
+    <div class="horaRealTxt">Horário real salvo: --</div>
+    <div class="resultadoAtraso semRegistro">Sem chegada registrada</div>
+<div style="margin-top:8px;background:#fff3cd;padding:8px;border-radius:8px;font-size:13px">
+🟢 Presente: até 20:00<br>
+🟡 Atrasado: 20:01 a 20:30<br>
+🔴 Atraso Crítico: 20:31 a 20:59<br>
+🚫 Falta Grave: após 21:00<br>
+❌ Falta: sem registro de chegada
+</div>
+
+  </div>
+
+  <button class="salvarBtn" onclick="salvarLinhaNoHistorico(this)">💾 Salvar no histórico</button>
+</section>
+
+<section class="cardEvento" data-date="2026-06-22">
+  <div class="topoCard">
+    <div>
+      <div class="data">22/06/2026</div>
+      <div class="dia">SEGUNDA</div>
+    </div>
+    <div class="status"></div>
+  </div>
+
+  <div class="campo">
+    <strong>🎤 Atração:</strong>
+    <p class="atracao">FREDDIE-VERSO - Tributo Freddie Mercury com Krony e Banda</p>
+  </div>
+
+  <div class="campo">
+    <strong>🕺 Pocket Show:</strong>
+    <p class="pocket">Michael Jackson | Tributo</p>
+  </div>
+
+  <div class="campo">
+    <strong>📝 Observação do evento:</strong>
+    <p class="obsEvento">Sem observação</p>
+  </div>
+
+  <div class="campo presenca">
+    <strong>✅ Dançarinos presentes:</strong>
+    <div class="checks"><label><input type="checkbox" data-dancer="Renan" onchange="salvarTudo()"> Renan</label><label><input type="checkbox" data-dancer="Abizael" onchange="salvarTudo()"> Abizael</label><label><input type="checkbox" data-dancer="Patrick" onchange="salvarTudo()"> Patrick</label><label><input type="checkbox" data-dancer="Jhonny Mendes" onchange="salvarTudo()"> Jhonny Mendes</label><label><input type="checkbox" data-dancer="João" onchange="salvarTudo()"> João</label><label><input type="checkbox" data-dancer="Murilo" onchange="salvarTudo()"> Murilo</label></div>
+    <textarea placeholder="Observação: atraso, falta, substituição..." oninput="salvarTudo()"></textarea>
+  </div>
+
+  <div class="campo chegadaBox">
+    <strong>⏰ Chegada automática:</strong>
+    <button onclick="registrarChegadaAgora(this)">Marcar chegada agora</button>
+    <div class="horaRealTxt">Horário real salvo: --</div>
+    <div class="resultadoAtraso semRegistro">Sem chegada registrada</div>
+<div style="margin-top:8px;background:#fff3cd;padding:8px;border-radius:8px;font-size:13px">
+🟢 Presente: até 20:00<br>
+🟡 Atrasado: 20:01 a 20:30<br>
+🔴 Atraso Crítico: 20:31 a 20:59<br>
+🚫 Falta Grave: após 21:00<br>
+❌ Falta: sem registro de chegada
+</div>
+
+  </div>
+
+  <button class="salvarBtn" onclick="salvarLinhaNoHistorico(this)">💾 Salvar no histórico</button>
+</section>
+
+<section class="cardEvento" data-date="2026-06-23">
+  <div class="topoCard">
+    <div>
+      <div class="data">23/06/2026</div>
+      <div class="dia">TERÇA</div>
+    </div>
+    <div class="status"></div>
+  </div>
+
+  <div class="campo">
+    <strong>🎤 Atração:</strong>
+    <p class="atracao">TRIBUTO DIVAS DA MUSICA</p>
+  </div>
+
+  <div class="campo">
+    <strong>🕺 Pocket Show:</strong>
+    <p class="pocket">Michael Jackson | Tributo</p>
+  </div>
+
+  <div class="campo">
+    <strong>📝 Observação do evento:</strong>
+    <p class="obsEvento">Sem observação</p>
+  </div>
+
+  <div class="campo presenca">
+    <strong>✅ Dançarinos presentes:</strong>
+    <div class="checks"><label><input type="checkbox" data-dancer="Renan" onchange="salvarTudo()"> Renan</label><label><input type="checkbox" data-dancer="Abizael" onchange="salvarTudo()"> Abizael</label><label><input type="checkbox" data-dancer="Patrick" onchange="salvarTudo()"> Patrick</label><label><input type="checkbox" data-dancer="Jhonny Mendes" onchange="salvarTudo()"> Jhonny Mendes</label><label><input type="checkbox" data-dancer="João" onchange="salvarTudo()"> João</label><label><input type="checkbox" data-dancer="Murilo" onchange="salvarTudo()"> Murilo</label></div>
+    <textarea placeholder="Observação: atraso, falta, substituição..." oninput="salvarTudo()"></textarea>
+  </div>
+
+  <div class="campo chegadaBox">
+    <strong>⏰ Chegada automática:</strong>
+    <button onclick="registrarChegadaAgora(this)">Marcar chegada agora</button>
+    <div class="horaRealTxt">Horário real salvo: --</div>
+    <div class="resultadoAtraso semRegistro">Sem chegada registrada</div>
+<div style="margin-top:8px;background:#fff3cd;padding:8px;border-radius:8px;font-size:13px">
+🟢 Presente: até 20:00<br>
+🟡 Atrasado: 20:01 a 20:30<br>
+🔴 Atraso Crítico: 20:31 a 20:59<br>
+🚫 Falta Grave: após 21:00<br>
+❌ Falta: sem registro de chegada
+</div>
+
+  </div>
+
+  <button class="salvarBtn" onclick="salvarLinhaNoHistorico(this)">💾 Salvar no histórico</button>
+</section>
+
+<section class="cardEvento" data-date="2026-06-24">
+  <div class="topoCard">
+    <div>
+      <div class="data">24/06/2026</div>
+      <div class="dia">QUARTA</div>
+    </div>
+    <div class="status"></div>
+  </div>
+
+  <div class="campo">
+    <strong>🎤 Atração:</strong>
+    <p class="atracao">NOITE DOS BEATLES - Tributo com Star Beatles</p>
+  </div>
+
+  <div class="campo">
+    <strong>🕺 Pocket Show:</strong>
+    <p class="pocket">Freddie Mercury | Tributo</p>
+  </div>
+
+  <div class="campo">
+    <strong>📝 Observação do evento:</strong>
+    <p class="obsEvento">JOGO 19H</p>
+  </div>
+
+  <div class="campo presenca">
+    <strong>✅ Dançarinos presentes:</strong>
+    <div class="checks"><label><input type="checkbox" data-dancer="Renan" onchange="salvarTudo()"> Renan</label><label><input type="checkbox" data-dancer="Abizael" onchange="salvarTudo()"> Abizael</label><label><input type="checkbox" data-dancer="Patrick" onchange="salvarTudo()"> Patrick</label><label><input type="checkbox" data-dancer="Jhonny Mendes" onchange="salvarTudo()"> Jhonny Mendes</label><label><input type="checkbox" data-dancer="João" onchange="salvarTudo()"> João</label><label><input type="checkbox" data-dancer="Murilo" onchange="salvarTudo()"> Murilo</label></div>
+    <textarea placeholder="Observação: atraso, falta, substituição..." oninput="salvarTudo()"></textarea>
+  </div>
+
+  <div class="campo chegadaBox">
+    <strong>⏰ Chegada automática:</strong>
+    <button onclick="registrarChegadaAgora(this)">Marcar chegada agora</button>
+    <div class="horaRealTxt">Horário real salvo: --</div>
+    <div class="resultadoAtraso semRegistro">Sem chegada registrada</div>
+<div style="margin-top:8px;background:#fff3cd;padding:8px;border-radius:8px;font-size:13px">
+🟢 Presente: até 20:00<br>
+🟡 Atrasado: 20:01 a 20:30<br>
+🔴 Atraso Crítico: 20:31 a 20:59<br>
+🚫 Falta Grave: após 21:00<br>
+❌ Falta: sem registro de chegada
+</div>
+
+  </div>
+
+  <button class="salvarBtn" onclick="salvarLinhaNoHistorico(this)">💾 Salvar no histórico</button>
+</section>
+
+<section class="cardEvento" data-date="2026-06-25">
+  <div class="topoCard">
+    <div>
+      <div class="data">25/06/2026</div>
+      <div class="dia">QUINTA</div>
+    </div>
+    <div class="status"></div>
+  </div>
+
+  <div class="campo">
+    <strong>🎤 Atração:</strong>
+    <p class="atracao">NOITE DO ELVIS - Tributo com Johnny Grace</p>
+  </div>
+
+  <div class="campo">
+    <strong>🕺 Pocket Show:</strong>
+    <p class="pocket">Pocket Divas | Tributo</p>
+  </div>
+
+  <div class="campo">
+    <strong>📝 Observação do evento:</strong>
+    <p class="obsEvento">Sem observação</p>
+  </div>
+
+  <div class="campo presenca">
+    <strong>✅ Dançarinos presentes:</strong>
+    <div class="checks"><label><input type="checkbox" data-dancer="Renan" onchange="salvarTudo()"> Renan</label><label><input type="checkbox" data-dancer="Abizael" onchange="salvarTudo()"> Abizael</label><label><input type="checkbox" data-dancer="Patrick" onchange="salvarTudo()"> Patrick</label><label><input type="checkbox" data-dancer="Jhonny Mendes" onchange="salvarTudo()"> Jhonny Mendes</label><label><input type="checkbox" data-dancer="João" onchange="salvarTudo()"> João</label><label><input type="checkbox" data-dancer="Murilo" onchange="salvarTudo()"> Murilo</label></div>
+    <textarea placeholder="Observação: atraso, falta, substituição..." oninput="salvarTudo()"></textarea>
+  </div>
+
+  <div class="campo chegadaBox">
+    <strong>⏰ Chegada automática:</strong>
+    <button onclick="registrarChegadaAgora(this)">Marcar chegada agora</button>
+    <div class="horaRealTxt">Horário real salvo: --</div>
+    <div class="resultadoAtraso semRegistro">Sem chegada registrada</div>
+<div style="margin-top:8px;background:#fff3cd;padding:8px;border-radius:8px;font-size:13px">
+🟢 Presente: até 20:00<br>
+🟡 Atrasado: 20:01 a 20:30<br>
+🔴 Atraso Crítico: 20:31 a 20:59<br>
+🚫 Falta Grave: após 21:00<br>
+❌ Falta: sem registro de chegada
+</div>
+
+  </div>
+
+  <button class="salvarBtn" onclick="salvarLinhaNoHistorico(this)">💾 Salvar no histórico</button>
+</section>
+
+<section class="cardEvento" data-date="2026-06-26">
+  <div class="topoCard">
+    <div>
+      <div class="data">26/06/2026</div>
+      <div class="dia">SEXTA</div>
+    </div>
+    <div class="status"></div>
+  </div>
+
+  <div class="campo">
+    <strong>🎤 Atração:</strong>
+    <p class="atracao">ESPECIAL MICHAEL JACKSON TRIBUTO + THE CLASSIC ROCKERS</p>
+  </div>
+
+  <div class="campo">
+    <strong>🕺 Pocket Show:</strong>
+    <p class="pocket">Sem pocket informado</p>
+  </div>
+
+  <div class="campo">
+    <strong>📝 Observação do evento:</strong>
+    <p class="obsEvento">Sem observação</p>
+  </div>
+
+  <div class="campo presenca">
+    <strong>✅ Dançarinos presentes:</strong>
+    <div class="checks"><label><input type="checkbox" data-dancer="Renan" onchange="salvarTudo()"> Renan</label><label><input type="checkbox" data-dancer="Abizael" onchange="salvarTudo()"> Abizael</label><label><input type="checkbox" data-dancer="Patrick" onchange="salvarTudo()"> Patrick</label><label><input type="checkbox" data-dancer="Jhonny Mendes" onchange="salvarTudo()"> Jhonny Mendes</label><label><input type="checkbox" data-dancer="João" onchange="salvarTudo()"> João</label><label><input type="checkbox" data-dancer="Murilo" onchange="salvarTudo()"> Murilo</label></div>
+    <textarea placeholder="Observação: atraso, falta, substituição..." oninput="salvarTudo()"></textarea>
+  </div>
+
+  <div class="campo chegadaBox">
+    <strong>⏰ Chegada automática:</strong>
+    <button onclick="registrarChegadaAgora(this)">Marcar chegada agora</button>
+    <div class="horaRealTxt">Horário real salvo: --</div>
+    <div class="resultadoAtraso semRegistro">Sem chegada registrada</div>
+<div style="margin-top:8px;background:#fff3cd;padding:8px;border-radius:8px;font-size:13px">
+🟢 Presente: até 20:00<br>
+🟡 Atrasado: 20:01 a 20:30<br>
+🔴 Atraso Crítico: 20:31 a 20:59<br>
+🚫 Falta Grave: após 21:00<br>
+❌ Falta: sem registro de chegada
+</div>
+
+  </div>
+
+  <button class="salvarBtn" onclick="salvarLinhaNoHistorico(this)">💾 Salvar no histórico</button>
+</section>
+
+<section class="cardEvento" data-date="2026-06-27">
+  <div class="topoCard">
+    <div>
+      <div class="data">27/06/2026</div>
+      <div class="dia">SÁBADO</div>
+    </div>
+    <div class="status"></div>
+  </div>
+
+  <div class="campo">
+    <strong>🎤 Atração:</strong>
+    <p class="atracao">The CLASSIC ROCKERS Show - Clássicos do Rock</p>
+  </div>
+
+  <div class="campo">
+    <strong>🕺 Pocket Show:</strong>
+    <p class="pocket">Freddie Mercury | Tributo</p>
+  </div>
+
+  <div class="campo">
+    <strong>📝 Observação do evento:</strong>
+    <p class="obsEvento">Sem observação</p>
+  </div>
+
+  <div class="campo presenca">
+    <strong>✅ Dançarinos presentes:</strong>
+    <div class="checks"><label><input type="checkbox" data-dancer="Renan" onchange="salvarTudo()"> Renan</label><label><input type="checkbox" data-dancer="Abizael" onchange="salvarTudo()"> Abizael</label><label><input type="checkbox" data-dancer="Patrick" onchange="salvarTudo()"> Patrick</label><label><input type="checkbox" data-dancer="Jhonny Mendes" onchange="salvarTudo()"> Jhonny Mendes</label><label><input type="checkbox" data-dancer="João" onchange="salvarTudo()"> João</label><label><input type="checkbox" data-dancer="Murilo" onchange="salvarTudo()"> Murilo</label></div>
+    <textarea placeholder="Observação: atraso, falta, substituição..." oninput="salvarTudo()"></textarea>
+  </div>
+
+  <div class="campo chegadaBox">
+    <strong>⏰ Chegada automática:</strong>
+    <button onclick="registrarChegadaAgora(this)">Marcar chegada agora</button>
+    <div class="horaRealTxt">Horário real salvo: --</div>
+    <div class="resultadoAtraso semRegistro">Sem chegada registrada</div>
+<div style="margin-top:8px;background:#fff3cd;padding:8px;border-radius:8px;font-size:13px">
+🟢 Presente: até 20:00<br>
+🟡 Atrasado: 20:01 a 20:30<br>
+🔴 Atraso Crítico: 20:31 a 20:59<br>
+🚫 Falta Grave: após 21:00<br>
+❌ Falta: sem registro de chegada
+</div>
+
+  </div>
+
+  <button class="salvarBtn" onclick="salvarLinhaNoHistorico(this)">💾 Salvar no histórico</button>
+</section>
+
+<section class="cardEvento" data-date="2026-06-28">
+  <div class="topoCard">
+    <div>
+      <div class="data">28/06/2026</div>
+      <div class="dia">DOMINGO</div>
+    </div>
+    <div class="status"></div>
+  </div>
+
+  <div class="campo">
+    <strong>🎤 Atração:</strong>
+    <p class="atracao">ESPECIAL ELTON JOHN - TRIBUTO com 70's Show</p>
+  </div>
+
+  <div class="campo">
+    <strong>🕺 Pocket Show:</strong>
+    <p class="pocket">Freddie Mercury | Tributo</p>
+  </div>
+
+  <div class="campo">
+    <strong>📝 Observação do evento:</strong>
+    <p class="obsEvento">Sem observação</p>
+  </div>
+
+  <div class="campo presenca">
+    <strong>✅ Dançarinos presentes:</strong>
+    <div class="checks"><label><input type="checkbox" data-dancer="Renan" onchange="salvarTudo()"> Renan</label><label><input type="checkbox" data-dancer="Abizael" onchange="salvarTudo()"> Abizael</label><label><input type="checkbox" data-dancer="Patrick" onchange="salvarTudo()"> Patrick</label><label><input type="checkbox" data-dancer="Jhonny Mendes" onchange="salvarTudo()"> Jhonny Mendes</label><label><input type="checkbox" data-dancer="João" onchange="salvarTudo()"> João</label><label><input type="checkbox" data-dancer="Murilo" onchange="salvarTudo()"> Murilo</label></div>
+    <textarea placeholder="Observação: atraso, falta, substituição..." oninput="salvarTudo()"></textarea>
+  </div>
+
+  <div class="campo chegadaBox">
+    <strong>⏰ Chegada automática:</strong>
+    <button onclick="registrarChegadaAgora(this)">Marcar chegada agora</button>
+    <div class="horaRealTxt">Horário real salvo: --</div>
+    <div class="resultadoAtraso semRegistro">Sem chegada registrada</div>
+<div style="margin-top:8px;background:#fff3cd;padding:8px;border-radius:8px;font-size:13px">
+🟢 Presente: até 20:00<br>
+🟡 Atrasado: 20:01 a 20:30<br>
+🔴 Atraso Crítico: 20:31 a 20:59<br>
+🚫 Falta Grave: após 21:00<br>
+❌ Falta: sem registro de chegada
+</div>
+
+  </div>
+
+  <button class="salvarBtn" onclick="salvarLinhaNoHistorico(this)">💾 Salvar no histórico</button>
+</section>
+
+<section class="cardEvento" data-date="2026-06-29">
+  <div class="topoCard">
+    <div>
+      <div class="data">29/06/2026</div>
+      <div class="dia">SEGUNDA</div>
+    </div>
+    <div class="status"></div>
+  </div>
+
+  <div class="campo">
+    <strong>🎤 Atração:</strong>
+    <p class="atracao">FREDDIE-VERSO - Tributo Freddie Mercury com Krony e Banda</p>
+  </div>
+
+  <div class="campo">
+    <strong>🕺 Pocket Show:</strong>
+    <p class="pocket">Michael Jackson | Tributo</p>
+  </div>
+
+  <div class="campo">
+    <strong>📝 Observação do evento:</strong>
+    <p class="obsEvento">Sem observação</p>
+  </div>
+
+  <div class="campo presenca">
+    <strong>✅ Dançarinos presentes:</strong>
+    <div class="checks"><label><input type="checkbox" data-dancer="Renan" onchange="salvarTudo()"> Renan</label><label><input type="checkbox" data-dancer="Abizael" onchange="salvarTudo()"> Abizael</label><label><input type="checkbox" data-dancer="Patrick" onchange="salvarTudo()"> Patrick</label><label><input type="checkbox" data-dancer="Jhonny Mendes" onchange="salvarTudo()"> Jhonny Mendes</label><label><input type="checkbox" data-dancer="João" onchange="salvarTudo()"> João</label><label><input type="checkbox" data-dancer="Murilo" onchange="salvarTudo()"> Murilo</label></div>
+    <textarea placeholder="Observação: atraso, falta, substituição..." oninput="salvarTudo()"></textarea>
+  </div>
+
+  <div class="campo chegadaBox">
+    <strong>⏰ Chegada automática:</strong>
+    <button onclick="registrarChegadaAgora(this)">Marcar chegada agora</button>
+    <div class="horaRealTxt">Horário real salvo: --</div>
+    <div class="resultadoAtraso semRegistro">Sem chegada registrada</div>
+<div style="margin-top:8px;background:#fff3cd;padding:8px;border-radius:8px;font-size:13px">
+🟢 Presente: até 20:00<br>
+🟡 Atrasado: 20:01 a 20:30<br>
+🔴 Atraso Crítico: 20:31 a 20:59<br>
+🚫 Falta Grave: após 21:00<br>
+❌ Falta: sem registro de chegada
+</div>
+
+  </div>
+
+  <button class="salvarBtn" onclick="salvarLinhaNoHistorico(this)">💾 Salvar no histórico</button>
+</section>
+
+<section class="cardEvento" data-date="2026-06-30">
+  <div class="topoCard">
+    <div>
+      <div class="data">30/06/2026</div>
+      <div class="dia">TERÇA</div>
+    </div>
+    <div class="status"></div>
+  </div>
+
+  <div class="campo">
+    <strong>🎤 Atração:</strong>
+    <p class="atracao">TRIBUTO DIVAS DA MUSICA</p>
+  </div>
+
+  <div class="campo">
+    <strong>🕺 Pocket Show:</strong>
+    <p class="pocket">Michael Jackson | Tributo</p>
+  </div>
+
+  <div class="campo">
+    <strong>📝 Observação do evento:</strong>
+    <p class="obsEvento">Sem observação</p>
+  </div>
+
+  <div class="campo presenca">
+    <strong>✅ Dançarinos presentes:</strong>
+    <div class="checks"><label><input type="checkbox" data-dancer="Renan" onchange="salvarTudo()"> Renan</label><label><input type="checkbox" data-dancer="Abizael" onchange="salvarTudo()"> Abizael</label><label><input type="checkbox" data-dancer="Patrick" onchange="salvarTudo()"> Patrick</label><label><input type="checkbox" data-dancer="Jhonny Mendes" onchange="salvarTudo()"> Jhonny Mendes</label><label><input type="checkbox" data-dancer="João" onchange="salvarTudo()"> João</label><label><input type="checkbox" data-dancer="Murilo" onchange="salvarTudo()"> Murilo</label></div>
+    <textarea placeholder="Observação: atraso, falta, substituição..." oninput="salvarTudo()"></textarea>
+  </div>
+
+  <div class="campo chegadaBox">
+    <strong>⏰ Chegada automática:</strong>
+    <button onclick="registrarChegadaAgora(this)">Marcar chegada agora</button>
+    <div class="horaRealTxt">Horário real salvo: --</div>
+    <div class="resultadoAtraso semRegistro">Sem chegada registrada</div>
+<div style="margin-top:8px;background:#fff3cd;padding:8px;border-radius:8px;font-size:13px">
+🟢 Presente: até 20:00<br>
+🟡 Atrasado: 20:01 a 20:30<br>
+🔴 Atraso Crítico: 20:31 a 20:59<br>
+🚫 Falta Grave: após 21:00<br>
+❌ Falta: sem registro de chegada
+</div>
+
+  </div>
+
+  <button class="salvarBtn" onclick="salvarLinhaNoHistorico(this)">💾 Salvar no histórico</button>
+</section>
+
+
+<h2>📊 Ranking de Presença</h2>
+<table id="rankingTabela">
+<thead><tr><th>Dançarino</th><th>Shows Presentes</th></tr></thead>
+<tbody></tbody>
+</table>
+
+<h2>📁 Histórico Salvo</h2>
+<table id="historicoTabela">
+<thead>
+<tr>
+<th>Data</th><th>Presentes</th><th>Observação</th><th>Horário Real</th><th>Atraso</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+</main>
+
+<div class="botoesFixos">
+  <button onclick="salvarTudo()">💾 Salvar Tudo</button>
+  <button onclick="window.print()">🖨️ PDF</button>
+  <button onclick="limparPresencas()">🗑️ Limpar Marcações</button>
+  <button onclick="limparHistorico()">🗑️ Limpar Histórico</button>
+</div>
+
+<script>
+const chavePresenca="agendaJunhoMobilePresenca";
+const chaveHistorico="agendaJunhoMobileHistorico";
+const horarioCombinado="20:00";
+const dancarinosPadrao=['Renan', 'Abizael', 'Patrick', 'Jhonny Mendes', 'João', 'Murilo'];
+
+function horaParaMinutos(hora){
+  if(!hora) return null;
+  const p=hora.split(":");
+  return parseInt(p[0])*60+parseInt(p[1]);
+}
+
+function calcularAtraso(card){
+  const chegada=card.dataset.horaChegada||"";
+  const resultado=card.querySelector(".resultadoAtraso");
+  const horaRealTxt=card.querySelector(".horaRealTxt");
+
+  horaRealTxt.innerText="Horário real salvo: "+(card.dataset.horarioRealSalvo||"--");
+  resultado.classList.remove("semRegistro","noHorario","atrasado");
+
+  if(!chegada){
+    resultado.innerText="Sem chegada registrada";
+    resultado.classList.add("semRegistro");
+    return {chegada:"",descricaoAtraso:"Sem chegada registrada",atrasoMinutos:0};
+  }
+
+  const atraso=Math.max(0,horaParaMinutos(chegada)-horaParaMinutos(horarioCombinado));
+
+  if(horaParaMinutos(chegada)>=1260){
+    resultado.innerText="🚫 FALTA GRAVE: chegada após 21:00";
+    resultado.classList.add("atrasado");
+    return {chegada:chegada,descricaoAtraso:"🚫 FALTA GRAVE: chegada após 21:00",atrasoMinutos:atraso};
+  }
+  if(atraso>30){
+    resultado.innerText="🔴 ATRASO CRÍTICO: "+atraso+" minuto(s)";
+    resultado.classList.add("atrasado");
+    return {chegada:chegada,descricaoAtraso:"🔴 ATRASO CRÍTICO: "+atraso+" minuto(s)",atrasoMinutos:atraso};
+  }
+  if(atraso>0){
+    resultado.innerText="🔴 Atrasado: "+atraso+" minuto(s)";
+    resultado.classList.add("atrasado");
+    return {chegada:chegada,descricaoAtraso:"🔴 Atrasado: "+atraso+" minuto(s)",atrasoMinutos:atraso};
+  }
+
+  resultado.innerText="🟢 Chegou dentro do horário";
+  resultado.classList.add("noHorario");
+  return {chegada:chegada,descricaoAtraso:"🟢 Chegou dentro do horário",atrasoMinutos:0};
+}
+
+function registrarChegadaAgora(botao){
+  const card=botao.closest(".cardEvento");
+  const agora=new Date();
+  const hora=String(agora.getHours()).padStart(2,"0")+":"+String(agora.getMinutes()).padStart(2,"0");
+  card.dataset.horaChegada=hora;
+  card.dataset.horarioRealSalvo=agora.toLocaleDateString("pt-BR")+" - "+agora.toLocaleTimeString("pt-BR");
+  calcularAtraso(card);
+  salvarLinha(card);
+  alert("Chegada salva com horário real.");
+}
+
+function dadosCard(card){
+  const presentes=Array.from(card.querySelectorAll('input[type="checkbox"]:checked')).map(c=>c.dataset.dancer);
+  const atraso=calcularAtraso(card);
+  return {
+    id:card.dataset.date,
+    data:card.querySelector(".data").innerText,
+    dia:card.querySelector(".dia").innerText,
+    atracao:card.querySelector(".atracao").innerText,
+    pocket:card.querySelector(".pocket").innerText,
+    observacaoEvento:card.querySelector(".obsEvento").innerText,
+    presentes:presentes,
+    anotacao:card.querySelector("textarea").value.trim(),
+    horaChegada:card.dataset.horaChegada||"",
+    horarioRealSalvo:card.dataset.horarioRealSalvo||"",
+    atrasoMinutos:atraso.atrasoMinutos,
+    descricaoAtraso:atraso.descricaoAtraso,
+    status:card.querySelector(".status").innerText
+  };
+}
+
+function salvarTudo(){
+  const presencas={};
+  let historico=JSON.parse(localStorage.getItem(chaveHistorico))||[];
+
+  document.querySelectorAll(".cardEvento").forEach(card=>{
+    const d=dadosCard(card);
+    presencas[d.id]=d;
+
+    const temRegistro=d.presentes.length>0||d.anotacao!==""||d.horaChegada!==""||card.classList.contains("realizado");
+    if(temRegistro){
+      const idx=historico.findIndex(x=>x.id===d.id);
+      if(idx>=0) historico[idx]=d; else historico.push(d);
+    }
+  });
+
+  localStorage.setItem(chavePresenca,JSON.stringify(presencas));
+  localStorage.setItem(chaveHistorico,JSON.stringify(historico));
+  carregarHistorico();
+  atualizarRanking();
+}
+
+function salvarLinha(card){
+  const d=dadosCard(card);
+  let presencas=JSON.parse(localStorage.getItem(chavePresenca))||{};
+  presencas[d.id]=d;
+  localStorage.setItem(chavePresenca,JSON.stringify(presencas));
+
+  let historico=JSON.parse(localStorage.getItem(chaveHistorico))||[];
+  const idx=historico.findIndex(x=>x.id===d.id);
+  if(idx>=0) historico[idx]=d; else historico.push(d);
+  localStorage.setItem(chaveHistorico,JSON.stringify(historico));
+
+  carregarHistorico();
+  atualizarRanking();
+}
+
+function salvarLinhaNoHistorico(botao){
+  salvarLinha(botao.closest(".cardEvento"));
+  alert("Salvo no histórico.");
+}
+
+function carregarPresencas(){
+  const presencas=JSON.parse(localStorage.getItem(chavePresenca))||{};
+  document.querySelectorAll(".cardEvento").forEach(card=>{
+    const d=presencas[card.dataset.date];
+    if(!d){calcularAtraso(card);return;}
+    card.querySelectorAll('input[type="checkbox"]').forEach(c=>c.checked=d.presentes&&d.presentes.includes(c.dataset.dancer));
+    card.querySelector("textarea").value=d.anotacao||"";
+    card.dataset.horaChegada=d.horaChegada||"";
+    card.dataset.horarioRealSalvo=d.horarioRealSalvo||"";
+    calcularAtraso(card);
+  });
+}
+
+function atualizarAgenda(){
+  const agora=new Date();
+  document.getElementById("relogio").innerText="⏰ "+agora.toLocaleDateString("pt-BR")+" - "+agora.toLocaleTimeString("pt-BR");
+  const hoje=new Date(agora.getFullYear(),agora.getMonth(),agora.getDate());
+  let r=0,a=0,t=0;
+
+  document.querySelectorAll(".cardEvento").forEach(card=>{
+    t++;
+    const dataShow=new Date(card.dataset.date+"T00:00:00");
+    const diff=Math.round((dataShow-hoje)/86400000);
+    const status=card.querySelector(".status");
+    card.classList.remove("realizado","hoje","amanha","agendado");
+
+    if(diff<0){card.classList.add("realizado");status.innerText="🔵 REALIZADO";r++;}
+    else if(diff===0){card.classList.add("hoje");status.innerText="🟢 HOJE";a++;}
+    else if(diff===1){card.classList.add("amanha");status.innerText="🟡 FALTA 1 DIA";a++;}
+    else{card.classList.add("agendado");status.innerText="⚪ AGENDADO";a++;}
+
+    calcularAtraso(card);
+  });
+
+  document.getElementById("totalRealizados").innerText=r;
+  document.getElementById("totalAgendados").innerText=a;
+  document.getElementById("totalAgenda").innerText=t;
+}
+
+function carregarHistorico(){
+  const historico=JSON.parse(localStorage.getItem(chaveHistorico))||[];
+  const body=document.querySelector("#historicoTabela tbody");
+  body.innerHTML="";
+  if(historico.length===0){
+    body.innerHTML='<tr><td colspan="5">Nenhum histórico salvo ainda.</td></tr>';
+    return;
+  }
+  historico.sort((a,b)=>a.id.localeCompare(b.id));
+  historico.forEach(item=>{
+    body.innerHTML+=`<tr>
+      <td>${item.data}</td>
+      <td>${(item.presentes||[]).join(", ")||"Sem presentes"}</td>
+      <td>${item.anotacao||"Sem observação"}</td>
+      <td>${item.horarioRealSalvo||"Sem horário salvo"}</td>
+      <td>${item.descricaoAtraso||"Sem chegada"}</td>
+    </tr>`;
+  });
+}
+
+function atualizarRanking(){
+  const ranking={};
+  dancarinosPadrao.forEach(n=>ranking[n]=0);
+  const historico=JSON.parse(localStorage.getItem(chaveHistorico))||[];
+  historico.forEach(item=>(item.presentes||[]).forEach(n=>ranking[n]=(ranking[n]||0)+1));
+  const body=document.querySelector("#rankingTabela tbody");
+  body.innerHTML="";
+  Object.entries(ranking).sort((a,b)=>b[1]-a[1]).forEach(([nome,total])=>{
+    body.innerHTML+=`<tr><td>${nome}</td><td>${total}</td></tr>`;
+  });
+}
+
+function limparPresencas(){
+  if(confirm("Deseja limpar as marcações da agenda?")){
+    localStorage.removeItem(chavePresenca);
+    document.querySelectorAll('input[type="checkbox"]').forEach(c=>c.checked=false);
+    document.querySelectorAll('textarea').forEach(t=>t.value="");
+    document.querySelectorAll(".cardEvento").forEach(card=>{card.dataset.horaChegada="";card.dataset.horarioRealSalvo="";calcularAtraso(card);});
+    salvarTudo();
+  }
+}
+
+function limparHistorico(){
+  if(confirm("Deseja apagar o histórico salvo?")){
+    localStorage.removeItem(chaveHistorico);
+    carregarHistorico();
+    atualizarRanking();
+  }
+}
+
+carregarPresencas();
+atualizarAgenda();
+carregarHistorico();
+atualizarRanking();
+setInterval(atualizarAgenda,1000);
+</script>
+</body>
+</html>

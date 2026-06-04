@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alerta Shows Michael - Junho 2026</title>
+
+<style>
+body{
+  background:#000;
+  color:white;
+  font-family:Arial, sans-serif;
+  padding:15px;
+  text-align:center;
+}
+
+h1{ color:#00ff66; }
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:20px;
+  background:#111;
+}
+
+th{
+  background:#222;
+  color:#00ff66;
+  padding:10px;
+  border:1px solid #00ff66;
+}
+
+td{
+  padding:10px;
+  border:1px solid #555;
+}
+
+.hoje{
+  background:#00ff66 !important;
+  color:#000;
+  font-weight:bold;
+  animation:piscar 1s infinite;
+}
+
+.amanha{
+  background:#ffd700 !important;
+  color:#000;
+  font-weight:bold;
+}
+
+.agendado{ color:#ffd700; }
+.realizado{ color:#aaa; }
+
+@keyframes piscar{
+  0%{opacity:1;}
+  50%{opacity:.5;}
+  100%{opacity:1;}
+}
+
+.alerta{
+  margin-top:20px;
+  font-size:24px;
+  font-weight:bold;
+  color:#00ff66;
+}
+
+input, button{
+  padding:10px;
+  margin:5px;
+  border:none;
+  border-radius:5px;
+  font-weight:bold;
+}
+
+button{
+  background:#00ff66;
+  color:#000;
+  cursor:pointer;
+}
+
+button:hover{ background:#00cc55; }
+</style>
+</head>
+
+<body>
+
+<h1>🎤 ALERTA SHOWS MICHAEL JACKSON - JUNHO 2026</h1>
+
+<div class="alerta" id="alerta"></div>
+
+<div>
+  <input type="date" id="novaData" min="2026-06-01" max="2026-06-30">
+  <input type="time" id="novaHora" value="21:00">
+  <button onclick="adicionarDataExtra()">➕ Adicionar Data Extra</button>
+</div>
+
+<table>
+<thead>
+<tr>
+  <th>Data</th>
+  <th>Dia</th>
+  <th>Show</th>
+  <th>Status</th>
+</tr>
+</thead>
+<tbody id="tabela"></tbody>
+</table>
+
+<script>
+let showsMichael = JSON.parse(localStorage.getItem("showsMichaelJunho2026")) || [
+  {data:"2026-06-01", hora:"18:00", show:"Michael Jackson | Tributo"},
+  {data:"2026-06-02", hora:"18:00", show:"Michael Jackson | Tributo"},
+  {data:"2026-06-05", hora:"18:00", show:"Especial Michael Jackson Tributo"},
+  {data:"2026-06-08", hora:"18:00", show:"Michael Jackson | Tributo"},
+  {data:"2026-06-09", hora:"18:00", show:"Michael Jackson | Tributo"},
+  {data:"2026-06-12", hora:"18:00", show:"Especial Michael Jackson Tributo"},
+  {data:"2026-06-15", hora:"18:00", show:"Michael Jackson | Tributo"},
+  {data:"2026-06-16", hora:"18:00", show:"Michael Jackson | Tributo"},
+  {data:"2026-06-19", hora:"18:00", show:"Especial Michael Jackson Tributo"},
+  {data:"2026-06-22", hora:"18:00", show:"Michael Jackson | Tributo"},
+  {data:"2026-06-23", hora:"18:00", show:"Michael Jackson | Tributo"},
+  {data:"2026-06-26", hora:"18:00", show:"Especial Michael Jackson Tributo"},
+  {data:"2026-06-29", hora:"18:00", show:"Michael Jackson | Tributo"},
+  {data:"2026-06-30", hora:"18:00", show:"Michael Jackson | Tributo"}
+];
+
+function diaSemana(data){
+  const dias = ["Domingo","Segunda","Terça","Quarta","Quinta","Sexta","Sábado"];
+  const d = new Date(data + "T00:00:00");
+  return dias[d.getDay()];
+}
+
+function renderizar(){
+  const hojeData = new Date();
+  hojeData.setHours(0,0,0,0);
+
+  const tabela = document.getElementById("tabela");
+  const alerta = document.getElementById("alerta");
+
+  tabela.innerHTML = "";
+  let temShowHoje = false;
+  let temShowAmanha = false;
+
+  showsMichael.sort((a,b)=>a.data.localeCompare(b.data));
+
+  showsMichael.forEach(item=>{
+    let status = "Agendado";
+    let classe = "agendado";
+
+    const dataShow = new Date(item.data + "T00:00:00");
+    const diferencaDias = Math.round((dataShow - hojeData) / (1000 * 60 * 60 * 24));
+
+    if(diferencaDias === 0){
+      status = "🟢 HOJE TEM SHOW";
+      classe = "hoje";
+      temShowHoje = true;
+    } 
+    else if(diferencaDias === 1){
+      status = "🟡 FALTA 1 DIA";
+      classe = "amanha";
+      temShowAmanha = true;
+    } 
+    else if(diferencaDias < 0){
+      status = "Realizado";
+      classe = "realizado";
+    }
+
+    tabela.innerHTML += `
+      <tr class="${classe}">
+        <td>${item.data.split("-").reverse().join("/")} - ${item.hora}</td>
+        <td>${diaSemana(item.data)}</td>
+        <td>${item.show}</td>
+        <td>${status}</td>
+      </tr>
+    `;
+  });
+
+  if(temShowHoje){
+    alerta.innerHTML = "🟢 HOJE TEM SHOW MICHAEL JACKSON!";
+    alerta.style.color = "#00ff66";
+  } else if(temShowAmanha){
+    alerta.innerHTML = "🟡 ATENÇÃO: FALTA 1 DIA PARA O SHOW!";
+    alerta.style.color = "#ffd700";
+  } else {
+    alerta.innerHTML = "⚪ Nenhum show Michael hoje";
+    alerta.style.color = "#00ff66";
+  }
+}
+
+function adicionarDataExtra(){
+  const data = document.getElementById("novaData").value;
+  const hora = document.getElementById("novaHora").value;
+
+  if(!data){
+    alert("Escolha uma data de junho de 2026.");
+    return;
+  }
+
+  showsMichael.push({
+    data:data,
+    hora:hora,
+    show:"Data Extra | Michael Jackson Tributo"
+  });
+
+  localStorage.setItem("showsMichaelJunho2026", JSON.stringify(showsMichael));
+
+  document.getElementById("novaData").value = "";
+  document.getElementById("novaHora").value = "21:00";
+
+  renderizar();
+}
+
+renderizar();
+</script>
+<hr>
+<a href="index-junho.html"><h2>Ver Shows do Mês de Junho Com alerta</h2></a>
+</body>
+</html>

@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alerta Shows Michael - Junho 2026</title>
+
+<style>
+body{
+  background:#000;
+  color:white;
+  font-family:Arial, sans-serif;
+  padding:15px;
+  text-align:center;
+}
+
+h1{ color:#00ff66; }
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:20px;
+  background:#111;
+}
+
+th{
+  background:#222;
+  color:#00ff66;
+  padding:10px;
+  border:1px solid #00ff66;
+}
+
+td{
+  padding:10px;
+  border:1px solid #555;
+  vertical-align:top;
+}
+
+.hoje{
+  background:#00ff66 !important;
+  color:#000;
+  font-weight:bold;
+  animation:piscar 1s infinite;
+}
+
+.amanha{
+  background:#ffd700 !important;
+  color:#000;
+  font-weight:bold;
+}
+
+.agendado{ color:#ffd700; }
+.realizado{ color:#aaa; }
+
+@keyframes piscar{
+  0%{opacity:1;}
+  50%{opacity:.5;}
+  100%{opacity:1;}
+}
+
+.alerta{
+  margin-top:20px;
+  font-size:24px;
+  font-weight:bold;
+  color:#00ff66;
+}
+
+input, button, select, textarea{
+  padding:10px;
+  margin:5px;
+  border:none;
+  border-radius:5px;
+  font-weight:bold;
+  width:95%;
+  max-width:560px;
+}
+
+textarea{
+  min-height:85px;
+  resize:vertical;
+}
+
+button{
+  background:#00ff66;
+  color:#000;
+  cursor:pointer;
+}
+
+button:hover{ background:#00cc55; }
+
+#areaAdicionarDataExtra,
+#areaTarefasDancarinos{
+  margin-top:15px;
+  background:#111;
+  border:1px solid #00ff66;
+  border-radius:10px;
+  padding:12px;
+}
+
+.botaoOcultar{
+  background:#ffd700;
+  color:#000;
+}
+
+.botaoApagar{
+  background:#ff3333;
+  color:white;
+}
+
+.botaoAzul{
+  background:#0099ff;
+  color:white;
+}
+
+.botaoPreto{
+  background:#333;
+  color:white;
+}
+
+a{
+  text-decoration:none;
+  color:white;
+}
+
+h2{
+  background:#00ff66;
+  color:#000;
+  padding:10px;
+  border-radius:10px;
+}
+
+.caixaInfo{
+  background:#050505;
+  border:1px solid #00ff66;
+  border-radius:8px;
+  padding:10px;
+  margin:10px auto;
+  max-width:760px;
+  word-break:break-word;
+}
+
+.descricaoModelo{
+  background:#061a06;
+  border:1px solid #00ff66;
+  color:#d9ffd9;
+  text-align:left;
+  line-height:1.5;
+}
+
+.statusConcluida{
+  color:#00ff66;
+  font-weight:bold;
+}
+
+.statusPendente{
+  color:#ffd700;
+  font-weight:bold;
+}
+
+.statusProblema{
+  color:#ff3333;
+  font-weight:bold;
+}
+
+@media print{
+  button,input,select,textarea,#areaAdicionarDataExtra{display:none}
+  body{background:white;color:#000}
+  table{background:white;color:#000}
+  th{color:#000;border:1px solid #000}
+  td{border:1px solid #000}
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎤 ALERTA SHOWS MICHAEL JACKSON - JUNHO 2026</h1>
+
+<div class="alerta" id="alerta"></div>
+
+<button class="botaoOcultar" onclick="alternarAreaAdicionarDataExtra()">
+  👁️ Mostrar / Ocultar Adicionar Data Extra
+</button>
+
+<button class="botaoAzul" onclick="alternarAreaTarefas()">
+  🕺 Mostrar / Ocultar Tarefas dos Dançarinos
+</button>
+
+<div id="areaAdicionarDataExtra">
+  <h2>➕ Adicionar Data Extra</h2>
+  <input type="date" id="novaData" min="2026-06-01" max="2026-06-30">
+  <input type="time" id="novaHora" value="21:00">
+  <button onclick="adicionarDataExtra()">➕ Adicionar Data Extra</button>
+  <button class="botaoApagar" onclick="apagarAreaAdicionarDataExtra()">🗑️ Apagar botão Adicionar Data Extra</button>
+</div>
+
+<table>
+<thead>
+<tr>
+  <th>Data</th>
+  <th>Dia</th>
+  <th>Show</th>
+  <th>Status</th>
+</tr>
+</thead>
+<tbody id="tabela"></tbody>
+</table>
+
+<div id="areaTarefasDancarinos">
+  <h2>🕺 Registro de Tarefas Feitas Durante o Dia</h2>
+
+  <div class="caixaInfo">
+    <strong>⏰ Registro em tempo real:</strong>
+    <span id="relogioTarefa"></span>
+  </div>
+
+  <div class="caixaInfo descricaoModelo">
+    <strong>📌 Descrição padrão do registro:</strong><br>
+    Não é obrigatório anotar suas tarefas. Neste campo, registre apenas o que for relevante sobre o trabalho do dia, como execução, horário real, situação, observações de comportamento, atraso, presença, organização de figurino, ensaio, passagem de palco ou qualquer ocorrência importante.
+  </div>
+
+  <select id="dataTarefa"></select>
+
+  <select id="dancarinoTarefa">
+    <option value="">Selecione o dançarino</option>
+    <option>Renan</option>
+    <option>Abizael</option>
+    <option>Patrick</option>
+    <option>Jhonny Mendes</option>
+    <option>João</option>
+    <option>Murilo</option>
+    <option>Alison assistente</option>
+    <option>EdymichaelCover</option>
+  </select>
+
+  <select id="tipoTarefa">
+    <option>Ensaio de coreografia</option>
+    <option>Passagem de palco</option>
+    <option>Aquecimento</option>
+    <option>Organização de figurino</option>
+    <option>Conferência de figurino</option>
+    <option>Marcação de entrada e saída</option>
+    <option>Alinhamento antes do show</option>
+    <option>Alinhamento depois do show</option>
+    <option>Correção de sincronia</option>
+    <option>Limpeza e guarda de figurino</option>
+    <option>Ocorrência profissional</option>
+    <option>Outra tarefa</option>
+  </select>
+
+  <select id="statusTarefa">
+    <option value="Concluída">✅ Concluída</option>
+    <option value="Pendente">🟡 Pendente</option>
+    <option value="Problema">🔴 Problema</option>
+  </select>
+
+  <textarea id="descricaoTarefa" placeholder="Descreva a tarefa feita durante o dia. Exemplo: O dançarino realizou passagem da coreografia, conferiu figurino, participou do alinhamento e corrigiu marcação de entrada."></textarea>
+
+  <textarea id="observacaoTarefa" placeholder="Observação em tempo real: atraso, falta, substituição, dificuldade, bom desempenho, saída sem avisar, falta de alinhamento..."></textarea>
+
+  <div class="caixaInfo" id="localizacaoTarefa">
+    📍 Localização: ainda não registrada.
+  </div>
+
+  <button class="botaoAzul" onclick="registrarLocalizacaoTarefa()">📍 Registrar localização em tempo real</button>
+  <button onclick="salvarTarefaDancarino()">💾 Salvar tarefa com hora real</button>
+  <button class="botaoPreto" onclick="window.print()">🖨️ Salvar / Imprimir PDF</button>
+  <button class="botaoApagar" onclick="limparHistoricoTarefas()">🗑️ Limpar histórico de tarefas</button>
+
+  <h2>📊 Resumo de Tarefas</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Dançarino</th>
+        <th>Total</th>
+        <th>Concluídas</th>
+        <th>Pendentes/Problemas</th>
+      </tr>
+    </thead>
+    <tbody id="rankingTarefas"></tbody>
+  </table>
+
+  <h2>📁 Histórico de Tarefas Registradas em Tempo Real</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Data do Show</th>
+        <th>Hora Real</th>
+        <th>Dançarino</th>
+        <th>Tarefa</th>
+        <th>Status</th>
+        <th>Descrição feita no dia</th>
+        <th>Localização</th>
+        <th>Ação</th>
+      </tr>
+    </thead>
+    <tbody id="historicoTarefas"></tbody>
+  </table>
+</div>
+
+<script>
+let showsMichael = JSON.parse(localStorage.getItem("showsMichaelJunho2026")) || [
+  {data:"2026-06-01", hora:"18:00", show:"Michael Jackson | Tributo"},
+  {data:"2026-06-02", hora:"18:00", show:"Michael Jackson | Tributo"},
+  {data:"2026-06-05", hora:"18:00", show:"Especial Michael Jackson Tributo"},
+  {data:"2026-06-08", hora:"18:00", show:"Michael Jackson | Tributo"},
+  {data:"2026-06-09", hora:"18:00", show:"Michael Jackson | Tributo"},
+  {data:"2026-06-12", hora:"18:00", show:"Especial Michael Jackson Tributo"},
+  {data:"2026-06-15", hora:"18:00", show:"Michael Jackson | Tributo"},
+  {data:"2026-06-16", hora:"18:00", show:"Michael Jackson | Tributo"},
+  {data:"2026-06-19", hora:"18:00", show:"Especial Michael Jackson Tributo"},
+  {data:"2026-06-22", hora:"18:00", show:"Michael Jackson | Tributo"},
+  {data:"2026-06-23", hora:"18:00", show:"Michael Jackson | Tributo"},
+  {data:"2026-06-26", hora:"18:00", show:"Especial Michael Jackson Tributo"},
+  {data:"2026-06-29", hora:"18:00", show:"Michael Jackson | Tributo"},
+  {data:"2026-06-30", hora:"18:00", show:"Michael Jackson | Tributo"}
+];
+
+const chaveTarefas = "tarefasDancarinosShowsMichaelJunho2026";
+const dancarinosBase = ["Renan","Abizael","Patrick","Jhonny Mendes","João","Murilo","Alison assistente","EdymichaelCover"];
+
+let localizacaoAtualTarefa = {
+  texto:"Localização não registrada",
+  latitude:"",
+  longitude:"",
+  link:""
+};
+
+function diaSemana(data){
+  const dias = ["Domingo","Segunda","Terça","Quarta","Quinta","Sexta","Sábado"];
+  const d = new Date(data + "T00:00:00");
+  return dias[d.getDay()];
+}
+
+function renderizar(){
+  const hojeData = new Date();
+  hojeData.setHours(0,0,0,0);
+
+  const tabela = document.getElementById("tabela");
+  const alerta = document.getElementById("alerta");
+
+  tabela.innerHTML = "";
+  let temShowHoje = false;
+  let temShowAmanha = false;
+
+  showsMichael.sort((a,b)=>a.data.localeCompare(b.data));
+
+  showsMichael.forEach(item=>{
+    let status = "Agendado";
+    let classe = "agendado";
+
+    const dataShow = new Date(item.data + "T00:00:00");
+    const diferencaDias = Math.round((dataShow - hojeData) / (1000 * 60 * 60 * 24));
+
+    if(diferencaDias === 0){
+      status = "🟢 HOJE TEM SHOW";
+      classe = "hoje";
+      temShowHoje = true;
+    }
+    else if(diferencaDias === 1){
+      status = "🟡 FALTA 1 DIA";
+      classe = "amanha";
+      temShowAmanha = true;
+    }
+    else if(diferencaDias < 0){
+      status = "Realizado";
+      classe = "realizado";
+    }
+
+    tabela.innerHTML += `
+      <tr class="${classe}">
+        <td>${item.data.split("-").reverse().join("/")} - ${item.hora}</td>
+        <td>${diaSemana(item.data)}</td>
+        <td>${item.show}</td>
+        <td>${status}</td>
+      </tr>
+    `;
+  });
+
+  if(temShowHoje){
+    alerta.innerHTML = "🟢 HOJE TEM SHOW MICHAEL JACKSON!";
+    alerta.style.color = "#00ff66";
+  } else if(temShowAmanha){
+    alerta.innerHTML = "🟡 ATENÇÃO: FALTA 1 DIA PARA O SHOW!";
+    alerta.style.color = "#ffd700";
+  } else {
+    alerta.innerHTML = "⚪ Nenhum show Michael hoje";
+    alerta.style.color = "#00ff66";
+  }
+
+  carregarDatasNoRegistro();
+}
+
+function adicionarDataExtra(){
+  const data = document.getElementById("novaData").value;
+  const hora = document.getElementById("novaHora").value;
+
+  if(!data){
+    alert("Escolha uma data de junho de 2026.");
+    return;
+  }
+
+  showsMichael.push({
+    data:data,
+    hora:hora,
+    show:"Data Extra | Michael Jackson Tributo"
+  });
+
+  localStorage.setItem("showsMichaelJunho2026", JSON.stringify(showsMichael));
+
+  document.getElementById("novaData").value = "";
+  document.getElementById("novaHora").value = "21:00";
+
+  renderizar();
+}
+
+function alternarAreaAdicionarDataExtra(){
+  const area = document.getElementById("areaAdicionarDataExtra");
+
+  if(area.style.display === "none"){
+    area.style.display = "block";
+    localStorage.setItem("areaAdicionarDataExtraOculta","nao");
+  }else{
+    area.style.display = "none";
+    localStorage.setItem("areaAdicionarDataExtraOculta","sim");
+  }
+}
+
+function apagarAreaAdicionarDataExtra(){
+  if(confirm("Deseja ocultar a área Adicionar Data Extra?")){
+    document.getElementById("areaAdicionarDataExtra").style.display = "none";
+    localStorage.setItem("areaAdicionarDataExtraOculta","sim");
+  }
+}
+
+function verificarAreaAdicionarDataExtra(){
+  const area = document.getElementById("areaAdicionarDataExtra");
+
+  if(localStorage.getItem("areaAdicionarDataExtraOculta") === "sim"){
+    area.style.display = "none";
+  }else{
+    area.style.display = "block";
+  }
+}
+
+function alternarAreaTarefas(){
+  const area = document.getElementById("areaTarefasDancarinos");
+
+  if(area.style.display === "none"){
+    area.style.display = "block";
+    localStorage.setItem("areaTarefasOculta","nao");
+  }else{
+    area.style.display = "none";
+    localStorage.setItem("areaTarefasOculta","sim");
+  }
+}
+
+function verificarAreaTarefas(){
+  const area = document.getElementById("areaTarefasDancarinos");
+
+  if(localStorage.getItem("areaTarefasOculta") === "sim"){
+    area.style.display = "none";
+  }else{
+    area.style.display = "block";
+  }
+}
+
+function atualizarRelogioTarefa(){
+  const agora = new Date();
+  document.getElementById("relogioTarefa").innerText =
+    agora.toLocaleDateString("pt-BR") + " - " + agora.toLocaleTimeString("pt-BR");
+}
+
+function carregarDatasNoRegistro(){
+  const select = document.getElementById("dataTarefa");
+  if(!select) return;
+
+  const valorAtual = select.value;
+  select.innerHTML = "";
+
+  showsMichael.sort((a,b)=>a.data.localeCompare(b.data)).forEach(item=>{
+    const opt = document.createElement("option");
+    opt.value = item.data;
+    opt.textContent = item.data.split("-").reverse().join("/") + " - " + item.hora + " | " + item.show;
+    select.appendChild(opt);
+  });
+
+  if(valorAtual) select.value = valorAtual;
+}
+
+function registrarLocalizacaoTarefa(){
+  const box = document.getElementById("localizacaoTarefa");
+
+  if(!navigator.geolocation){
+    box.innerHTML = "❌ Este aparelho ou navegador não permite registrar localização.";
+    return;
+  }
+
+  box.innerHTML = "📍 Buscando localização... autorize no celular.";
+
+  navigator.geolocation.getCurrentPosition(
+    function(pos){
+      const lat = pos.coords.latitude.toFixed(6);
+      const lon = pos.coords.longitude.toFixed(6);
+      const precisao = Math.round(pos.coords.accuracy);
+      const link = "https://www.google.com/maps?q=" + lat + "," + lon;
+
+      localizacaoAtualTarefa = {
+        texto:"Latitude: " + lat + " | Longitude: " + lon + " | Precisão aproximada: " + precisao + "m",
+        latitude:lat,
+        longitude:lon,
+        link:link
+      };
+
+      box.innerHTML = "✅ Localização registrada:<br>" +
+        localizacaoAtualTarefa.texto + "<br>" +
+        '<a href="' + link + '" target="_blank">Abrir no mapa</a>';
+    },
+    function(){
+      box.innerHTML = "❌ Localização não autorizada ou indisponível.";
+    },
+    {enableHighAccuracy:true, timeout:10000, maximumAge:0}
+  );
+}
+
+function salvarTarefaDancarino(){
+  const data = document.getElementById("dataTarefa").value;
+  const dancarino = document.getElementById("dancarinoTarefa").value;
+  const tipo = document.getElementById("tipoTarefa").value;
+  const status = document.getElementById("statusTarefa").value;
+  const descricao = document.getElementById("descricaoTarefa").value.trim();
+  const observacao = document.getElementById("observacaoTarefa").value.trim();
+
+  if(!data){
+    alert("Selecione a data do show.");
+    return;
+  }
+
+  if(!dancarino){
+    alert("Selecione o dançarino.");
+    return;
+  }
+
+  if(!descricao){
+    alert("Descreva a tarefa feita durante o dia.");
+    return;
+  }
+
+  const agora = new Date();
+
+  const registro = {
+    id: Date.now(),
+    data:data,
+    dataBR:data.split("-").reverse().join("/"),
+    horaReal: agora.toLocaleDateString("pt-BR") + " - " + agora.toLocaleTimeString("pt-BR"),
+    dancarino:dancarino,
+    tipo:tipo,
+    status:status,
+    descricao:descricao,
+    observacao:observacao,
+    localizacao:localizacaoAtualTarefa
+  };
+
+  const historico = JSON.parse(localStorage.getItem(chaveTarefas)) || [];
+  historico.push(registro);
+  localStorage.setItem(chaveTarefas, JSON.stringify(historico));
+
+  document.getElementById("descricaoTarefa").value = "";
+  document.getElementById("observacaoTarefa").value = "";
+  document.getElementById("localizacaoTarefa").innerHTML = "📍 Localização: ainda não registrada.";
+  localizacaoAtualTarefa = {texto:"Localização não registrada", latitude:"", longitude:"", link:""};
+
+  carregarHistoricoTarefas();
+  alert("Tarefa registrada no tempo real com hora salva.");
+}
+
+function classeStatusTarefa(status){
+  if(status === "Concluída") return "statusConcluida";
+  if(status === "Pendente") return "statusPendente";
+  return "statusProblema";
+}
+
+function carregarHistoricoTarefas(){
+  const historico = JSON.parse(localStorage.getItem(chaveTarefas)) || [];
+  const corpo = document.getElementById("historicoTarefas");
+  corpo.innerHTML = "";
+
+  if(historico.length === 0){
+    corpo.innerHTML = '<tr><td colspan="8">Nenhuma tarefa registrada ainda.</td></tr>';
+  }else{
+    historico.sort((a,b)=>a.data.localeCompare(b.data) || a.dancarino.localeCompare(b.dancarino));
+
+    historico.forEach(item=>{
+      const local = item.localizacao && item.localizacao.link
+        ? '<a href="' + item.localizacao.link + '" target="_blank">Ver mapa</a><br>' + item.localizacao.texto
+        : "Sem localização";
+
+      corpo.innerHTML += `
+        <tr>
+          <td>${item.dataBR}</td>
+          <td>${item.horaReal}</td>
+          <td>${item.dancarino}</td>
+          <td>${item.tipo}</td>
+          <td class="${classeStatusTarefa(item.status)}">${item.status}</td>
+          <td>${item.descricao}<br><strong>Obs:</strong> ${item.observacao || "Sem observação"}</td>
+          <td>${local}</td>
+          <td><button class="botaoApagar" onclick="apagarTarefa(${item.id})">Apagar</button></td>
+        </tr>
+      `;
+    });
+  }
+
+  atualizarRankingTarefas();
+}
+
+function atualizarRankingTarefas(){
+  const historico = JSON.parse(localStorage.getItem(chaveTarefas)) || [];
+  const ranking = {};
+
+  dancarinosBase.forEach(nome=>{
+    ranking[nome] = {total:0, concluidas:0, pendentes:0};
+  });
+
+  historico.forEach(item=>{
+    if(!ranking[item.dancarino]){
+      ranking[item.dancarino] = {total:0, concluidas:0, pendentes:0};
+    }
+
+    ranking[item.dancarino].total++;
+
+    if(item.status === "Concluída"){
+      ranking[item.dancarino].concluidas++;
+    }else{
+      ranking[item.dancarino].pendentes++;
+    }
+  });
+
+  const corpo = document.getElementById("rankingTarefas");
+  corpo.innerHTML = "";
+
+  Object.entries(ranking)
+    .sort((a,b)=>b[1].total - a[1].total)
+    .forEach(([nome,dados])=>{
+      corpo.innerHTML += `
+        <tr>
+          <td>${nome}</td>
+          <td>${dados.total}</td>
+          <td>${dados.concluidas}</td>
+          <td>${dados.pendentes}</td>
+        </tr>
+      `;
+    });
+}
+
+function apagarTarefa(id){
+  if(confirm("Deseja apagar esta tarefa?")){
+    let historico = JSON.parse(localStorage.getItem(chaveTarefas)) || [];
+    historico = historico.filter(item=>item.id !== id);
+    localStorage.setItem(chaveTarefas, JSON.stringify(historico));
+    carregarHistoricoTarefas();
+  }
+}
+
+function limparHistoricoTarefas(){
+  if(confirm("Deseja apagar todo o histórico de tarefas dos dançarinos?")){
+    localStorage.removeItem(chaveTarefas);
+    carregarHistoricoTarefas();
+  }
+}
+
+verificarAreaAdicionarDataExtra();
+verificarAreaTarefas();
+renderizar();
+carregarHistoricoTarefas();
+atualizarRelogioTarefa();
+setInterval(atualizarRelogioTarefa,1000);
+</script>
+
+<hr>
+<a href="index-junho.html"><h2>Ver Shows do Mês de Junho Com alerta</h2></a>
+</body>
+</html>

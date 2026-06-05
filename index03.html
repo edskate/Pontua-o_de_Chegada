@@ -79,6 +79,36 @@ button{
 }
 
 button:hover{ background:#00cc55; }
+
+#areaAdicionarDataExtra{
+  margin-top:15px;
+  background:#111;
+  border:1px solid #00ff66;
+  border-radius:10px;
+  padding:12px;
+}
+
+.botaoOcultar{
+  background:#ffd700;
+  color:#000;
+}
+
+.botaoApagar{
+  background:#ff3333;
+  color:white;
+}
+
+a{
+  text-decoration:none;
+  color:white;
+}
+
+h2{
+  background:#00ff66;
+  color:#000;
+  padding:10px;
+  border-radius:10px;
+}
 </style>
 </head>
 
@@ -88,10 +118,16 @@ button:hover{ background:#00cc55; }
 
 <div class="alerta" id="alerta"></div>
 
-<div>
+<button class="botaoOcultar" onclick="alternarAreaAdicionarDataExtra()">
+  👁️ Mostrar / Ocultar Adicionar Data Extra
+</button>
+
+<div id="areaAdicionarDataExtra">
+  <h2>➕ Adicionar Data Extra</h2>
   <input type="date" id="novaData" min="2026-06-01" max="2026-06-30">
   <input type="time" id="novaHora" value="21:00">
   <button onclick="adicionarDataExtra()">➕ Adicionar Data Extra</button>
+  <button class="botaoApagar" onclick="apagarAreaAdicionarDataExtra()">🗑️ Apagar botão Adicionar Data Extra</button>
 </div>
 
 <table>
@@ -154,12 +190,12 @@ function renderizar(){
       status = "🟢 HOJE TEM SHOW";
       classe = "hoje";
       temShowHoje = true;
-    } 
+    }
     else if(diferencaDias === 1){
       status = "🟡 FALTA 1 DIA";
       classe = "amanha";
       temShowAmanha = true;
-    } 
+    }
     else if(diferencaDias < 0){
       status = "Realizado";
       classe = "realizado";
@@ -210,8 +246,39 @@ function adicionarDataExtra(){
   renderizar();
 }
 
+function alternarAreaAdicionarDataExtra(){
+  const area = document.getElementById("areaAdicionarDataExtra");
+
+  if(area.style.display === "none"){
+    area.style.display = "block";
+    localStorage.setItem("areaAdicionarDataExtraOculta","nao");
+  }else{
+    area.style.display = "none";
+    localStorage.setItem("areaAdicionarDataExtraOculta","sim");
+  }
+}
+
+function apagarAreaAdicionarDataExtra(){
+  if(confirm("Deseja ocultar a área Adicionar Data Extra?")){
+    document.getElementById("areaAdicionarDataExtra").style.display = "none";
+    localStorage.setItem("areaAdicionarDataExtraOculta","sim");
+  }
+}
+
+function verificarAreaAdicionarDataExtra(){
+  const area = document.getElementById("areaAdicionarDataExtra");
+
+  if(localStorage.getItem("areaAdicionarDataExtraOculta") === "sim"){
+    area.style.display = "none";
+  }else{
+    area.style.display = "block";
+  }
+}
+
+verificarAreaAdicionarDataExtra();
 renderizar();
 </script>
+
 <hr>
 <a href="index-junho.html"><h2>Ver Shows do Mês de Junho Com alerta</h2></a>
 </body>
